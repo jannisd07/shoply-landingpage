@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>ShoplyAI - Smart Shopping List Assistant</title>
@@ -720,21 +729,23 @@
             left: 0;
             right: 0;
             bottom: 0;
-            width: 100%;
+            width: 100vw;
             height: 100vh;
             height: 100dvh;
-            min-height: 100vh;
-            min-height: 100dvh;
-            min-height: -webkit-fill-available;
             background: var(--background);
             z-index: 1000;
             overflow: hidden;
             transition: transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
-            /* Extend into safe areas */
-            padding-bottom: env(safe-area-inset-bottom);
-            padding-top: env(safe-area-inset-top);
-            padding-left: env(safe-area-inset-left);
-            padding-right: env(safe-area-inset-right);
+            /* Force expansion on iOS */
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+        }
+        
+        /* Ensure body doesn't scroll when menu is open */
+        body.menu-open {
+            position: fixed;
+            width: 100%;
+            overflow: hidden;
         }
 
         .mobile-menu-overlay.open {
@@ -1001,6 +1012,93 @@
                 padding: 3rem 1rem;
             }
         }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-button {
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .language-button:hover {
+            background: var(--background-alt);
+        }
+
+        .language-flag {
+            font-size: 1.125rem;
+            line-height: 1;
+        }
+
+        .language-dropdown {
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 0;
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px var(--shadow-md);
+            padding: 0.5rem;
+            min-width: 160px;
+            display: none;
+            z-index: 1100;
+        }
+
+        .language-dropdown.open {
+            display: block;
+        }
+
+        .language-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.625rem 0.75rem;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: background 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .language-option:hover {
+            background: var(--background-alt);
+        }
+
+        .language-option.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                display: none;
+            }
+
+            .mobile-language-switcher {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1.5rem 0 0;
+                border-top: 1px solid var(--border);
+                margin-top: 1.5rem;
+            }
+
+            .mobile-language-switcher .language-option {
+                font-size: 1rem;
+                padding: 0.75rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1021,6 +1119,40 @@
                 <a href="/">Home</a>
                 <a href="/pricing">Pricing</a>
                 <a href="/how-it-works">How It Works</a>
+                
+                <!-- Language Switcher -->
+                <div class="language-switcher">
+                    <button class="language-button" id="languageButton" aria-label="Select language">
+                        <span class="language-flag" id="currentFlag">🇬🇧</span>
+                        <span id="currentLang">EN</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+                        </svg>
+                    </button>
+                    <div class="language-dropdown" id="languageDropdown">
+                        <div class="language-option active" data-lang="en" data-flag="🇬🇧">
+                            <span class="language-flag">🇬🇧</span>
+                            <span>English</span>
+                        </div>
+                        <div class="language-option" data-lang="de" data-flag="🇩🇪">
+                            <span class="language-flag">🇩🇪</span>
+                            <span>Deutsch</span>
+                        </div>
+                        <div class="language-option" data-lang="es" data-flag="🇪🇸">
+                            <span class="language-flag">🇪🇸</span>
+                            <span>Español</span>
+                        </div>
+                        <div class="language-option" data-lang="fr" data-flag="🇫🇷">
+                            <span class="language-flag">🇫🇷</span>
+                            <span>Français</span>
+                        </div>
+                        <div class="language-option" data-lang="it" data-flag="🇮🇹">
+                            <span class="language-flag">🇮🇹</span>
+                            <span>Italiano</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <button class="cta-button">Get Started</button>
             </div>
             <button class="mobile-menu-toggle" aria-label="Menu">
@@ -1058,6 +1190,30 @@
             <a href="/pricing">Pricing</a>
             <a href="/how-it-works">How It Works</a>
             <button class="cta-button">Get Started</button>
+            
+            <!-- Mobile Language Switcher -->
+            <div class="mobile-language-switcher">
+                <div class="language-option active" data-lang="en" data-flag="🇬🇧">
+                    <span class="language-flag">🇬🇧</span>
+                    <span>English</span>
+                </div>
+                <div class="language-option" data-lang="de" data-flag="🇩🇪">
+                    <span class="language-flag">🇩🇪</span>
+                    <span>Deutsch</span>
+                </div>
+                <div class="language-option" data-lang="es" data-flag="🇪🇸">
+                    <span class="language-flag">🇪🇸</span>
+                    <span>Español</span>
+                </div>
+                <div class="language-option" data-lang="fr" data-flag="🇫🇷">
+                    <span class="language-flag">🇫🇷</span>
+                    <span>Français</span>
+                </div>
+                <div class="language-option" data-lang="it" data-flag="🇮🇹">
+                    <span class="language-flag">🇮🇹</span>
+                    <span>Italiano</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1375,6 +1531,7 @@
         function openMobileMenu() {
             mobileMenu.classList.add('open');
             mobileMenu.classList.remove('closing');
+            document.body.classList.add('menu-open');
             document.body.style.overflow = 'hidden';
         }
         
@@ -1382,6 +1539,7 @@
             mobileMenu.classList.add('closing');
             setTimeout(() => {
                 mobileMenu.classList.remove('open', 'closing');
+                document.body.classList.remove('menu-open');
                 document.body.style.overflow = '';
             }, 300);
         }
@@ -1709,6 +1867,296 @@
                 autoScrollInterval = setInterval(autoScrollMobile, 3000);
             } else {
                 animationFrame = requestAnimationFrame(autoScrollDesktop);
+            }
+        }
+
+        // Language Switcher
+        const translations = {
+            en: {
+                nav: {
+                    home: 'Home',
+                    pricing: 'Pricing',
+                    howItWorks: 'How It Works',
+                    getStarted: 'Get Started'
+                },
+                hero: {
+                    title: 'Your Smart Shopping Assistant',
+                    subtitle: 'Organize your shopping with AI-powered categorization, diet-aware suggestions, and intelligent list management. Shop smarter, not harder.',
+                    download: 'Download for Free',
+                    learnMore: 'Learn More'
+                },
+                features: {
+                    title: 'Intelligent Features',
+                    subtitle: 'Everything you need for efficient shopping',
+                    aiCategorization: 'AI Categorization',
+                    aiCategorizationDesc: 'Automatically organize items by store section',
+                    dietAware: 'Diet-Aware',
+                    dietAwareDesc: 'Respects your dietary preferences and restrictions',
+                    smartSuggestions: 'Smart Suggestions',
+                    smartSuggestionsDesc: 'Learn from your habits and suggest frequently bought items',
+                    multiStore: 'Multi-Store Support',
+                    multiStoreDesc: 'Manage lists for different stores separately'
+                },
+                modal: {
+                    title: 'Coming Soon!',
+                    subtitle: 'ShoplyAI is currently in development. We\'re working hard to bring you the best shopping list experience. Get notified when we launch!',
+                    placeholder: 'Enter your email',
+                    notify: 'Notify Me',
+                    success: '✓ Thanks! We\'ll notify you when we launch.'
+                },
+                footer: {
+                    copyright: '© 2025 ShoplyAI. Built with Flutter. All rights reserved.'
+                }
+            },
+            de: {
+                nav: {
+                    home: 'Startseite',
+                    pricing: 'Preise',
+                    howItWorks: 'So funktioniert\'s',
+                    getStarted: 'Jetzt starten'
+                },
+                hero: {
+                    title: 'Ihr intelligenter Einkaufsassistent',
+                    subtitle: 'Organisieren Sie Ihre Einkäufe mit KI-gestützter Kategorisierung, ernährungsbewussten Vorschlägen und intelligenter Listenverwaltung. Smarter einkaufen, nicht härter.',
+                    download: 'Kostenlos herunterladen',
+                    learnMore: 'Mehr erfahren'
+                },
+                features: {
+                    title: 'Intelligente Funktionen',
+                    subtitle: 'Alles, was Sie für effizientes Einkaufen brauchen',
+                    aiCategorization: 'KI-Kategorisierung',
+                    aiCategorizationDesc: 'Artikel automatisch nach Geschäftsbereich sortieren',
+                    dietAware: 'Ernährungsbewusst',
+                    dietAwareDesc: 'Respektiert Ihre Ernährungspräferenzen und -einschränkungen',
+                    smartSuggestions: 'Intelligente Vorschläge',
+                    smartSuggestionsDesc: 'Lernt aus Ihren Gewohnheiten und schlägt häufig gekaufte Artikel vor',
+                    multiStore: 'Multi-Store-Unterstützung',
+                    multiStoreDesc: 'Verwalten Sie Listen für verschiedene Geschäfte separat'
+                },
+                modal: {
+                    title: 'Bald verfügbar!',
+                    subtitle: 'ShoplyAI befindet sich derzeit in der Entwicklung. Wir arbeiten hart daran, Ihnen das beste Einkaufslisten-Erlebnis zu bieten. Lassen Sie sich benachrichtigen, wenn wir starten!',
+                    placeholder: 'E-Mail eingeben',
+                    notify: 'Benachrichtigen',
+                    success: '✓ Danke! Wir benachrichtigen Sie, wenn wir starten.'
+                },
+                footer: {
+                    copyright: '© 2025 ShoplyAI. Entwickelt mit Flutter. Alle Rechte vorbehalten.'
+                }
+            },
+            es: {
+                nav: {
+                    home: 'Inicio',
+                    pricing: 'Precios',
+                    howItWorks: 'Cómo funciona',
+                    getStarted: 'Comenzar'
+                },
+                hero: {
+                    title: 'Tu Asistente Inteligente de Compras',
+                    subtitle: 'Organiza tus compras con categorización impulsada por IA, sugerencias conscientes de la dieta y gestión inteligente de listas. Compra de manera más inteligente, no más difícil.',
+                    download: 'Descargar gratis',
+                    learnMore: 'Más información'
+                },
+                features: {
+                    title: 'Funciones Inteligentes',
+                    subtitle: 'Todo lo que necesitas para comprar eficientemente',
+                    aiCategorization: 'Categorización IA',
+                    aiCategorizationDesc: 'Organiza automáticamente los artículos por sección de tienda',
+                    dietAware: 'Consciente de la Dieta',
+                    dietAwareDesc: 'Respeta tus preferencias y restricciones dietéticas',
+                    smartSuggestions: 'Sugerencias Inteligentes',
+                    smartSuggestionsDesc: 'Aprende de tus hábitos y sugiere artículos comprados frecuentemente',
+                    multiStore: 'Soporte Multi-Tienda',
+                    multiStoreDesc: 'Gestiona listas para diferentes tiendas por separado'
+                },
+                modal: {
+                    title: '¡Próximamente!',
+                    subtitle: 'ShoplyAI está actualmente en desarrollo. Estamos trabajando duro para ofrecerte la mejor experiencia de lista de compras. ¡Recibe una notificación cuando lancemos!',
+                    placeholder: 'Ingresa tu email',
+                    notify: 'Notificarme',
+                    success: '✓ ¡Gracias! Te notificaremos cuando lancemos.'
+                },
+                footer: {
+                    copyright: '© 2025 ShoplyAI. Construido con Flutter. Todos los derechos reservados.'
+                }
+            },
+            fr: {
+                nav: {
+                    home: 'Accueil',
+                    pricing: 'Tarifs',
+                    howItWorks: 'Comment ça marche',
+                    getStarted: 'Commencer'
+                },
+                hero: {
+                    title: 'Votre Assistant de Courses Intelligent',
+                    subtitle: 'Organisez vos courses avec une catégorisation alimentée par l\'IA, des suggestions respectueuses du régime et une gestion intelligente des listes. Achetez plus intelligemment, pas plus difficilement.',
+                    download: 'Télécharger gratuitement',
+                    learnMore: 'En savoir plus'
+                },
+                features: {
+                    title: 'Fonctionnalités Intelligentes',
+                    subtitle: 'Tout ce dont vous avez besoin pour des courses efficaces',
+                    aiCategorization: 'Catégorisation IA',
+                    aiCategorizationDesc: 'Organisez automatiquement les articles par section de magasin',
+                    dietAware: 'Conscient du Régime',
+                    dietAwareDesc: 'Respecte vos préférences et restrictions alimentaires',
+                    smartSuggestions: 'Suggestions Intelligentes',
+                    smartSuggestionsDesc: 'Apprend de vos habitudes et suggère des articles fréquemment achetés',
+                    multiStore: 'Support Multi-Magasins',
+                    multiStoreDesc: 'Gérez les listes pour différents magasins séparément'
+                },
+                modal: {
+                    title: 'Bientôt disponible !',
+                    subtitle: 'ShoplyAI est actuellement en développement. Nous travaillons dur pour vous offrir la meilleure expérience de liste de courses. Soyez notifié lors du lancement !',
+                    placeholder: 'Entrez votre email',
+                    notify: 'Me notifier',
+                    success: '✓ Merci ! Nous vous notifierons lors du lancement.'
+                },
+                footer: {
+                    copyright: '© 2025 ShoplyAI. Construit avec Flutter. Tous droits réservés.'
+                }
+            },
+            it: {
+                nav: {
+                    home: 'Home',
+                    pricing: 'Prezzi',
+                    howItWorks: 'Come funziona',
+                    getStarted: 'Inizia'
+                },
+                hero: {
+                    title: 'Il Tuo Assistente Intelligente per la Spesa',
+                    subtitle: 'Organizza la tua spesa con categorizzazione basata su IA, suggerimenti consapevoli della dieta e gestione intelligente delle liste. Fai la spesa in modo più intelligente, non più difficile.',
+                    download: 'Scarica gratis',
+                    learnMore: 'Scopri di più'
+                },
+                features: {
+                    title: 'Funzionalità Intelligenti',
+                    subtitle: 'Tutto ciò di cui hai bisogno per una spesa efficiente',
+                    aiCategorization: 'Categorizzazione IA',
+                    aiCategorizationDesc: 'Organizza automaticamente gli articoli per sezione del negozio',
+                    dietAware: 'Consapevole della Dieta',
+                    dietAwareDesc: 'Rispetta le tue preferenze e restrizioni alimentari',
+                    smartSuggestions: 'Suggerimenti Intelligenti',
+                    smartSuggestionsDesc: 'Impara dalle tue abitudini e suggerisce articoli acquistati frequentemente',
+                    multiStore: 'Supporto Multi-Negozio',
+                    multiStoreDesc: 'Gestisci liste per diversi negozi separatamente'
+                },
+                modal: {
+                    title: 'Prossimamente!',
+                    subtitle: 'ShoplyAI è attualmente in sviluppo. Stiamo lavorando duramente per offrirti la migliore esperienza di lista della spesa. Ricevi una notifica quando lanciamo!',
+                    placeholder: 'Inserisci la tua email',
+                    notify: 'Notificami',
+                    success: '✓ Grazie! Ti notificheremo quando lanciamo.'
+                },
+                footer: {
+                    copyright: '© 2025 ShoplyAI. Costruito con Flutter. Tutti i diritti riservati.'
+                }
+            }
+        };
+
+        let currentLanguage = localStorage.getItem('language') || 'en';
+
+        function updateContent(lang) {
+            const t = translations[lang];
+            
+            // Update navigation
+            document.querySelectorAll('.nav-links a, .mobile-menu-content a').forEach((link, index) => {
+                if (index === 0) link.textContent = t.nav.home;
+                if (index === 1 || index === 4) link.textContent = t.nav.pricing;
+                if (index === 2 || index === 5) link.textContent = t.nav.howItWorks;
+            });
+            
+            document.querySelectorAll('.cta-button').forEach(btn => {
+                btn.textContent = t.nav.getStarted;
+            });
+            
+            // Update hero section
+            document.querySelector('.hero h1').textContent = t.hero.title;
+            document.querySelector('.hero p').textContent = t.hero.subtitle;
+            
+            const heroButtons = document.querySelectorAll('.hero-buttons .button-primary, .hero-buttons .button-secondary');
+            if (heroButtons[0]) heroButtons[0].textContent = t.hero.download;
+            if (heroButtons[1]) heroButtons[1].textContent = t.hero.learnMore;
+            
+            // Update modal
+            document.querySelector('.modal h3').textContent = t.modal.title;
+            document.querySelector('.modal p').textContent = t.modal.subtitle;
+            document.querySelector('#emailInput').placeholder = t.modal.placeholder;
+            document.querySelector('.modal-button').textContent = t.modal.notify;
+            document.querySelector('#successMessage').textContent = t.modal.success;
+            
+            // Update footer
+            document.querySelector('.footer-bottom p').textContent = t.footer.copyright;
+            
+            // Update language attribute
+            document.documentElement.lang = lang;
+            
+            // Save preference
+            localStorage.setItem('language', lang);
+            currentLanguage = lang;
+        }
+
+        // Language switcher functionality
+        const languageButton = document.getElementById('languageButton');
+        const languageDropdown = document.getElementById('languageDropdown');
+        const currentFlag = document.getElementById('currentFlag');
+        const currentLang = document.getElementById('currentLang');
+
+        if (languageButton) {
+            languageButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                languageDropdown.classList.toggle('open');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', () => {
+                languageDropdown.classList.remove('open');
+            });
+        }
+
+        // Handle language selection
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const lang = option.dataset.lang;
+                const flag = option.dataset.flag;
+                
+                // Update active state
+                document.querySelectorAll('.language-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                document.querySelectorAll(`[data-lang="${lang}"]`).forEach(opt => {
+                    opt.classList.add('active');
+                });
+                
+                // Update button
+                if (currentFlag) currentFlag.textContent = flag;
+                if (currentLang) currentLang.textContent = lang.toUpperCase();
+                
+                // Update content
+                updateContent(lang);
+                
+                // Close dropdown
+                if (languageDropdown) languageDropdown.classList.remove('open');
+            });
+        });
+
+        // Initialize with saved language or default to English
+        if (currentLanguage !== 'en') {
+            const langOption = document.querySelector(`[data-lang="${currentLanguage}"]`);
+            if (langOption) {
+                const flag = langOption.dataset.flag;
+                if (currentFlag) currentFlag.textContent = flag;
+                if (currentLang) currentLang.textContent = currentLanguage.toUpperCase();
+                
+                document.querySelectorAll('.language-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                document.querySelectorAll(`[data-lang="${currentLanguage}"]`).forEach(opt => {
+                    opt.classList.add('active');
+                });
+                
+                updateContent(currentLanguage);
             }
         }
     </script>
