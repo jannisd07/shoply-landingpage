@@ -1103,21 +1103,41 @@
 
             .mobile-language-dropdown {
                 display: none;
-                flex-direction: column;
-                gap: 0;
-                width: 100%;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 100%;
+                background: var(--background);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+                min-width: 220px;
+                max-width: 280px;
+                z-index: 1001;
+                overflow: hidden;
                 margin-top: 0.5rem;
             }
 
             .mobile-language-dropdown.open {
-                display: flex;
+                display: block;
             }
 
             .mobile-language-dropdown .language-option {
                 font-size: 1.25rem;
-                padding: 1rem;
+                padding: 1rem 1.5rem;
                 justify-content: center;
                 font-weight: 500;
+                border-bottom: 1px solid var(--border);
+                cursor: pointer;
+                transition: background-color 0.2s ease;
+            }
+
+            .mobile-language-dropdown .language-option:hover {
+                background-color: var(--background-alt);
+            }
+
+            .mobile-language-dropdown .language-option:last-child {
+                border-bottom: none;
             }
         }
     </style>
@@ -1207,27 +1227,31 @@
             <button class="cta-button">Get Started</button>
             
             <!-- Mobile Language Switcher -->
-            <button class="mobile-language-button" id="mobileLanguageButton">
-                <span id="mobileCurrentLang">English</span>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
-                </svg>
-            </button>
-            <div class="mobile-language-dropdown" id="mobileLanguageDropdown">
-                <div class="language-option active" data-lang="en">
-                    <span>English</span>
+            <div style="position: relative; width: 100%;">
+                <button class="mobile-language-button" id="mobileLanguageButton">
+                    <span id="mobileCurrentLang">English</span>
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+                    </svg>
+                </button>
+                <div class="mobile-language-dropdown" id="mobileLanguageDropdown">
+                    <div class="language-option active" data-lang="en">
+                        <span>English</span>
+                    </div>
+                    <div class="language-option" data-lang="de">
+                        <span>Deutsch</span>
+                    </div>
+                    <div class="language-option" data-lang="es">
+                        <span>Español</span>
+                    </div>
+                    <div class="language-option" data-lang="fr">
+                        <span>Français</span>
+                    </div>
+                    <div class="language-option" data-lang="it">
+                        <span>Italiano</span>
+                    </div>
                 </div>
-                <div class="language-option" data-lang="de">
-                    <span>Deutsch</span>
-                </div>
-                <div class="language-option" data-lang="es">
-                    <span>Español</span>
-                </div>
-                <div class="language-option" data-lang="fr">
-                    <span>Français</span>
-                </div>
-                <div class="language-option" data-lang="it">
-                    <span>Italiano</span>
+            </div>
                 </div>
             </div>
         </div>
@@ -1878,7 +1902,15 @@
         if (mobileLanguageButton) {
             mobileLanguageButton.addEventListener('click', (e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 mobileLanguageDropdown.classList.toggle('open');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileLanguageButton.contains(e.target) && !mobileLanguageDropdown.contains(e.target)) {
+                    mobileLanguageDropdown.classList.remove('open');
+                }
             });
         }
 
@@ -1886,6 +1918,7 @@
         document.querySelectorAll('.language-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
+                e.preventDefault();
                 const lang = option.dataset.lang;
                 
                 // Update active state
@@ -1903,7 +1936,7 @@
                 // Update content
                 updateContent(lang);
                 
-                // Close dropdowns
+                // Close only the language dropdowns, NOT the mobile menu
                 if (languageDropdown) languageDropdown.classList.remove('open');
                 if (mobileLanguageDropdown) mobileLanguageDropdown.classList.remove('open');
             });
