@@ -1037,11 +1037,6 @@
             background: var(--background-alt);
         }
 
-        .language-flag {
-            font-size: 1.125rem;
-            line-height: 1;
-        }
-
         .language-dropdown {
             position: absolute;
             top: calc(100% + 0.5rem);
@@ -1051,7 +1046,7 @@
             border-radius: 12px;
             box-shadow: 0 4px 12px var(--shadow-md);
             padding: 0.5rem;
-            min-width: 160px;
+            min-width: 140px;
             display: none;
             z-index: 1100;
         }
@@ -1063,7 +1058,6 @@
         .language-option {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
             padding: 0.625rem 0.75rem;
             cursor: pointer;
             border-radius: 6px;
@@ -1085,18 +1079,41 @@
                 display: none;
             }
 
-            .mobile-language-switcher {
+            .mobile-language-button {
+                color: var(--text-primary);
+                text-decoration: none;
+                font-size: 1.75rem;
+                font-weight: 600;
+                padding: 1.25rem 0;
+                transition: color 0.2s ease;
+                text-align: center;
+                width: 100%;
+                background: transparent;
+                border: none;
+                cursor: pointer;
                 display: flex;
-                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 gap: 0.5rem;
-                padding: 1.5rem 0 0;
-                border-top: 1px solid var(--border);
-                margin-top: 1.5rem;
             }
 
-            .mobile-language-switcher .language-option {
-                font-size: 1rem;
-                padding: 0.75rem;
+            .mobile-language-dropdown {
+                display: none;
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+
+            .mobile-language-dropdown.open {
+                display: flex;
+            }
+
+            .mobile-language-dropdown .language-option {
+                font-size: 1.25rem;
+                padding: 1rem;
+                justify-content: center;
+                font-weight: 500;
             }
         }
     </style>
@@ -1123,31 +1140,25 @@
                 <!-- Language Switcher -->
                 <div class="language-switcher">
                     <button class="language-button" id="languageButton" aria-label="Select language">
-                        <span class="language-flag" id="currentFlag">🇬🇧</span>
                         <span id="currentLang">EN</span>
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
                         </svg>
                     </button>
                     <div class="language-dropdown" id="languageDropdown">
-                        <div class="language-option active" data-lang="en" data-flag="🇬🇧">
-                            <span class="language-flag">🇬🇧</span>
+                        <div class="language-option active" data-lang="en">
                             <span>English</span>
                         </div>
-                        <div class="language-option" data-lang="de" data-flag="🇩🇪">
-                            <span class="language-flag">🇩🇪</span>
+                        <div class="language-option" data-lang="de">
                             <span>Deutsch</span>
                         </div>
-                        <div class="language-option" data-lang="es" data-flag="🇪🇸">
-                            <span class="language-flag">🇪🇸</span>
+                        <div class="language-option" data-lang="es">
                             <span>Español</span>
                         </div>
-                        <div class="language-option" data-lang="fr" data-flag="🇫🇷">
-                            <span class="language-flag">🇫🇷</span>
+                        <div class="language-option" data-lang="fr">
                             <span>Français</span>
                         </div>
-                        <div class="language-option" data-lang="it" data-flag="🇮🇹">
-                            <span class="language-flag">🇮🇹</span>
+                        <div class="language-option" data-lang="it">
                             <span>Italiano</span>
                         </div>
                     </div>
@@ -1192,25 +1203,26 @@
             <button class="cta-button">Get Started</button>
             
             <!-- Mobile Language Switcher -->
-            <div class="mobile-language-switcher">
-                <div class="language-option active" data-lang="en" data-flag="🇬🇧">
-                    <span class="language-flag">🇬🇧</span>
+            <button class="mobile-language-button" id="mobileLanguageButton">
+                <span id="mobileCurrentLang">English</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
+                </svg>
+            </button>
+            <div class="mobile-language-dropdown" id="mobileLanguageDropdown">
+                <div class="language-option active" data-lang="en">
                     <span>English</span>
                 </div>
-                <div class="language-option" data-lang="de" data-flag="🇩🇪">
-                    <span class="language-flag">🇩🇪</span>
+                <div class="language-option" data-lang="de">
                     <span>Deutsch</span>
                 </div>
-                <div class="language-option" data-lang="es" data-flag="🇪🇸">
-                    <span class="language-flag">🇪🇸</span>
+                <div class="language-option" data-lang="es">
                     <span>Español</span>
                 </div>
-                <div class="language-option" data-lang="fr" data-flag="🇫🇷">
-                    <span class="language-flag">🇫🇷</span>
+                <div class="language-option" data-lang="fr">
                     <span>Français</span>
                 </div>
-                <div class="language-option" data-lang="it" data-flag="🇮🇹">
-                    <span class="language-flag">🇮🇹</span>
+                <div class="language-option" data-lang="it">
                     <span>Italiano</span>
                 </div>
             </div>
