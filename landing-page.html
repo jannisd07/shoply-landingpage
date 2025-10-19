@@ -1082,62 +1082,104 @@
             .language-switcher {
                 display: none;
             }
+        }
 
-            .mobile-language-button {
-                color: var(--text-primary);
-                text-decoration: none;
-                font-size: 1.75rem;
-                font-weight: 600;
-                padding: 1.25rem 0;
-                transition: color 0.2s ease;
-                text-align: center;
-                width: 100%;
-                background: transparent;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.5rem;
+        /* Floating Language Button - Always visible at bottom left */
+        .floating-language-button {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+        }
+
+        .floating-language-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .floating-language-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Floating Language Dropdown */
+        .floating-language-dropdown {
+            position: fixed;
+            bottom: 88px;
+            left: 24px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            min-width: 160px;
+            z-index: 998;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .floating-language-dropdown.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .floating-language-dropdown .language-option {
+            padding: 0.875rem 1.25rem;
+            font-size: 0.9375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .floating-language-dropdown .language-option:last-child {
+            border-bottom: none;
+        }
+
+        .floating-language-dropdown .language-option:hover {
+            background-color: rgba(0, 122, 255, 0.08);
+        }
+
+        .floating-language-dropdown .language-option.active {
+            background-color: rgba(0, 122, 255, 0.12);
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .floating-language-button {
+                bottom: 20px;
+                left: 20px;
+                width: 52px;
+                height: 52px;
             }
 
-            .mobile-language-dropdown {
-                display: none;
-                position: absolute;
-                left: 50%;
-                transform: translateX(-50%);
-                top: 100%;
-                background: var(--background);
-                border: 1px solid var(--border);
-                border-radius: 12px;
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-                min-width: 220px;
-                max-width: 280px;
-                z-index: 1001;
-                overflow: hidden;
-                margin-top: 0.5rem;
-            }
-
-            .mobile-language-dropdown.open {
-                display: block;
-            }
-
-            .mobile-language-dropdown .language-option {
-                font-size: 1.25rem;
-                padding: 1rem 1.5rem;
-                justify-content: center;
-                font-weight: 500;
-                border-bottom: 1px solid var(--border);
-                cursor: pointer;
-                transition: background-color 0.2s ease;
-            }
-
-            .mobile-language-dropdown .language-option:hover {
-                background-color: var(--background-alt);
-            }
-
-            .mobile-language-dropdown .language-option:last-child {
-                border-bottom: none;
+            .floating-language-dropdown {
+                bottom: 80px;
+                left: 20px;
             }
         }
     </style>
@@ -1225,35 +1267,30 @@
             <a href="/pricing">Pricing</a>
             <a href="/how-it-works">How It Works</a>
             <button class="cta-button">Get Started</button>
-            
-            <!-- Mobile Language Switcher -->
-            <div style="position: relative; width: 100%;">
-                <button class="mobile-language-button" id="mobileLanguageButton">
-                    <span id="mobileCurrentLang">English</span>
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
-                    </svg>
-                </button>
-                <div class="mobile-language-dropdown" id="mobileLanguageDropdown">
-                    <div class="language-option active" data-lang="en">
-                        <span>English</span>
-                    </div>
-                    <div class="language-option" data-lang="de">
-                        <span>Deutsch</span>
-                    </div>
-                    <div class="language-option" data-lang="es">
-                        <span>Español</span>
-                    </div>
-                    <div class="language-option" data-lang="fr">
-                        <span>Français</span>
-                    </div>
-                    <div class="language-option" data-lang="it">
-                        <span>Italiano</span>
-                    </div>
-                </div>
-            </div>
-                </div>
-            </div>
+        </div>
+    </div>
+
+    <!-- Floating Language Button -->
+    <button class="floating-language-button" id="floatingLanguageButton" aria-label="Change language">
+        <span id="floatingCurrentLang">EN</span>
+    </button>
+
+    <!-- Floating Language Dropdown -->
+    <div class="floating-language-dropdown" id="floatingLanguageDropdown">
+        <div class="language-option active" data-lang="en">
+            <span>English</span>
+        </div>
+        <div class="language-option" data-lang="de">
+            <span>Deutsch</span>
+        </div>
+        <div class="language-option" data-lang="es">
+            <span>Español</span>
+        </div>
+        <div class="language-option" data-lang="fr">
+            <span>Français</span>
+        </div>
+        <div class="language-option" data-lang="it">
+            <span>Italiano</span>
         </div>
     </div>
 
@@ -1881,15 +1918,17 @@
         const languageButton = document.getElementById('languageButton');
         const languageDropdown = document.getElementById('languageDropdown');
         const currentLang = document.getElementById('currentLang');
-        const mobileLanguageButton = document.getElementById('mobileLanguageButton');
-        const mobileLanguageDropdown = document.getElementById('mobileLanguageDropdown');
-        const mobileCurrentLang = document.getElementById('mobileCurrentLang');
+        const floatingLanguageButton = document.getElementById('floatingLanguageButton');
+        const floatingLanguageDropdown = document.getElementById('floatingLanguageDropdown');
+        const floatingCurrentLang = document.getElementById('floatingCurrentLang');
 
-        // Desktop language switcher
+        // Desktop language switcher (in navbar)
         if (languageButton) {
             languageButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 languageDropdown.classList.toggle('open');
+                // Close floating dropdown if open
+                if (floatingLanguageDropdown) floatingLanguageDropdown.classList.remove('open');
             });
 
             // Close dropdown when clicking outside
@@ -1898,18 +1937,20 @@
             });
         }
 
-        // Mobile language switcher
-        if (mobileLanguageButton) {
-            mobileLanguageButton.addEventListener('click', (e) => {
+        // Floating language switcher (bottom left, always visible)
+        if (floatingLanguageButton) {
+            floatingLanguageButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                mobileLanguageDropdown.classList.toggle('open');
+                floatingLanguageDropdown.classList.toggle('open');
+                // Close desktop dropdown if open
+                if (languageDropdown) languageDropdown.classList.remove('open');
             });
 
             // Close dropdown when clicking outside
             document.addEventListener('click', (e) => {
-                if (!mobileLanguageButton.contains(e.target) && !mobileLanguageDropdown.contains(e.target)) {
-                    mobileLanguageDropdown.classList.remove('open');
+                if (!floatingLanguageButton.contains(e.target) && !floatingLanguageDropdown.contains(e.target)) {
+                    floatingLanguageDropdown.classList.remove('open');
                 }
             });
         }
@@ -1929,16 +1970,16 @@
                     opt.classList.add('active');
                 });
                 
-                // Update buttons
+                // Update all language buttons
                 if (currentLang) currentLang.textContent = lang.toUpperCase();
-                if (mobileCurrentLang) mobileCurrentLang.textContent = languageNames[lang];
+                if (floatingCurrentLang) floatingCurrentLang.textContent = lang.toUpperCase();
                 
                 // Update content
                 updateContent(lang);
                 
-                // Close only the language dropdowns, NOT the mobile menu
+                // Close all language dropdowns
                 if (languageDropdown) languageDropdown.classList.remove('open');
-                if (mobileLanguageDropdown) mobileLanguageDropdown.classList.remove('open');
+                if (floatingLanguageDropdown) floatingLanguageDropdown.classList.remove('open');
             });
         });
 
@@ -1947,7 +1988,7 @@
             const langOption = document.querySelector(`[data-lang="${currentLanguage}"]`);
             if (langOption) {
                 if (currentLang) currentLang.textContent = currentLanguage.toUpperCase();
-                if (mobileCurrentLang) mobileCurrentLang.textContent = languageNames[currentLanguage];
+                if (floatingCurrentLang) floatingCurrentLang.textContent = currentLanguage.toUpperCase();
                 
                 document.querySelectorAll('.language-option').forEach(opt => {
                     opt.classList.remove('active');
