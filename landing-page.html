@@ -1154,6 +1154,8 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
         }
 
         .floating-language-dropdown .language-option:last-child {
@@ -1162,6 +1164,7 @@
 
         .floating-language-dropdown .language-option:hover {
             background-color: rgba(0, 122, 255, 0.08);
+            text-decoration: none;
         }
 
         .floating-language-dropdown .language-option.active {
@@ -1202,33 +1205,6 @@
                 <a href="/">Home</a>
                 <a href="/pricing">Pricing</a>
                 <a href="/how-it-works">How It Works</a>
-                
-                <!-- Language Switcher -->
-                <div class="language-switcher">
-                    <button class="language-button" id="languageButton" aria-label="Select language">
-                        <span id="currentLang">EN</span>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="3 4.5 6 7.5 9 4.5"></polyline>
-                        </svg>
-                    </button>
-                    <div class="language-dropdown" id="languageDropdown">
-                        <div class="language-option active" data-lang="en">
-                            <span>English</span>
-                        </div>
-                        <div class="language-option" data-lang="de">
-                            <span>Deutsch</span>
-                        </div>
-                        <div class="language-option" data-lang="es">
-                            <span>Español</span>
-                        </div>
-                        <div class="language-option" data-lang="fr">
-                            <span>Français</span>
-                        </div>
-                        <div class="language-option" data-lang="it">
-                            <span>Italiano</span>
-                        </div>
-                    </div>
-                </div>
                 
                 <button class="cta-button">Get Started</button>
             </div>
@@ -1277,21 +1253,21 @@
 
     <!-- Floating Language Dropdown -->
     <div class="floating-language-dropdown" id="floatingLanguageDropdown">
-        <div class="language-option active" data-lang="en">
+        <a href="/" class="language-option active" data-lang="en">
             <span>English</span>
-        </div>
-        <div class="language-option" data-lang="de">
+        </a>
+        <a href="/de" class="language-option" data-lang="de">
             <span>Deutsch</span>
-        </div>
-        <div class="language-option" data-lang="es">
+        </a>
+        <a href="/es" class="language-option" data-lang="es">
             <span>Español</span>
-        </div>
-        <div class="language-option" data-lang="fr">
+        </a>
+        <a href="/fr" class="language-option" data-lang="fr">
             <span>Français</span>
-        </div>
-        <div class="language-option" data-lang="it">
+        </a>
+        <a href="/it" class="language-option" data-lang="it">
             <span>Italiano</span>
-        </div>
+        </a>
     </div>
 
     <!-- Hero Section -->
@@ -1911,38 +1887,63 @@
             }
         }
 
-        // Language Switcher - Load translations from external file
-        let currentLanguage = localStorage.getItem('language') || 'en';
+        // Language Switcher - Load translations from external file and detect from URL
+        const supportedLanguages = ['en', 'de', 'es', 'fr', 'it'];
+        
+        // Detect language from URL path (e.g., /de, /es, etc.)
+        function getLanguageFromURL() {
+            const path = window.location.pathname;
+            const pathParts = path.split('/').filter(part => part.length > 0);
+            
+            // Check if first part of path is a language code
+            if (pathParts.length > 0 && supportedLanguages.includes(pathParts[0])) {
+                return pathParts[0];
+            }
+            
+            // Check localStorage as fallback
+            const savedLang = localStorage.getItem('language');
+            if (savedLang && supportedLanguages.includes(savedLang)) {
+                return savedLang;
+            }
+            
+            return 'en'; // Default to English
+        }
+
+        let currentLanguage = getLanguageFromURL();
+
+        // Update navigation links to include current language prefix
+        function updateNavigationLinks(lang) {
+            const prefix = lang === 'en' ? '' : `/${lang}`;
+            
+            // Update all navigation links
+            document.querySelectorAll('.nav-links a').forEach((link, index) => {
+                if (index === 0) link.href = `${prefix}/`; // Home
+                if (index === 1) link.href = `${prefix}/pricing`; // Pricing
+                if (index === 2) link.href = `${prefix}/how-it-works`; // How it works
+            });
+            
+            // Update mobile menu links
+            document.querySelectorAll('.mobile-menu-content a').forEach((link, index) => {
+                if (index === 0) link.href = `${prefix}/`; // Home
+                if (index === 1) link.href = `${prefix}/pricing`; // Pricing
+                if (index === 2) link.href = `${prefix}/how-it-works`; // How it works
+            });
+            
+            // Update floating language dropdown links to preserve current page
+            const currentPage = window.location.pathname.split('/').filter(part => part && !supportedLanguages.includes(part)).join('/');
+            const basePage = currentPage || '';
+            
+            document.querySelectorAll('.floating-language-dropdown a').forEach(link => {
+                const targetLang = link.dataset.lang;
+                const targetPrefix = targetLang === 'en' ? '' : `/${targetLang}`;
+                link.href = `${targetPrefix}/${basePage}`.replace(/\/$/, '') || '/';
+            });
+        }
 
         // Language switcher functionality
-        const languageButton = document.getElementById('languageButton');
-        const languageDropdown = document.getElementById('languageDropdown');
-        const currentLang = document.getElementById('currentLang');
         const floatingLanguageButton = document.getElementById('floatingLanguageButton');
         const floatingLanguageDropdown = document.getElementById('floatingLanguageDropdown');
         const floatingCurrentLang = document.getElementById('floatingCurrentLang');
-
-        // Desktop language switcher (in navbar)
-        if (languageButton) {
-            languageButton.addEventListener('click', (e) => {
-                e.stopPropagation();
-                languageDropdown.classList.toggle('open');
-                // Close floating dropdown if open
-                if (floatingLanguageDropdown) floatingLanguageDropdown.classList.remove('open');
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!languageButton.contains(e.target) && !languageDropdown.contains(e.target)) {
-                    languageDropdown.classList.remove('open');
-                }
-            });
-
-            // Prevent dropdown from closing when clicking inside it
-            languageDropdown.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-        }
 
         // Floating language switcher (bottom left, always visible)
         if (floatingLanguageButton) {
@@ -1950,8 +1951,6 @@
                 e.stopPropagation();
                 e.preventDefault();
                 floatingLanguageDropdown.classList.toggle('open');
-                // Close desktop dropdown if open
-                if (languageDropdown) languageDropdown.classList.remove('open');
             });
 
             // Close dropdown when clicking outside
@@ -1963,55 +1962,35 @@
 
             // Prevent dropdown from closing when clicking inside it
             floatingLanguageDropdown.addEventListener('click', (e) => {
-                e.stopPropagation();
+                // Don't stop propagation for links - let them navigate
+                if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+                    e.stopPropagation();
+                }
             });
         }
 
-        // Handle language selection
-        document.querySelectorAll('.language-option').forEach(option => {
-            option.addEventListener('click', (e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                const lang = option.dataset.lang;
-                
-                // Update active state
-                document.querySelectorAll('.language-option').forEach(opt => {
-                    opt.classList.remove('active');
-                });
-                document.querySelectorAll(`[data-lang="${lang}"]`).forEach(opt => {
-                    opt.classList.add('active');
-                });
-                
-                // Update all language buttons
-                if (currentLang) currentLang.textContent = lang.toUpperCase();
-                if (floatingCurrentLang) floatingCurrentLang.textContent = lang.toUpperCase();
-                
-                // Update content
-                updateContent(lang);
-                
-                // Close all language dropdowns
-                if (languageDropdown) languageDropdown.classList.remove('open');
-                if (floatingLanguageDropdown) floatingLanguageDropdown.classList.remove('open');
+        // Update active language in dropdown
+        function updateActiveLanguage(lang) {
+            document.querySelectorAll('.language-option').forEach(opt => {
+                opt.classList.remove('active');
             });
-        });
-
-        // Initialize with saved language or default to English
-        if (currentLanguage !== 'en') {
-            const langOption = document.querySelector(`[data-lang="${currentLanguage}"]`);
-            if (langOption) {
-                if (currentLang) currentLang.textContent = currentLanguage.toUpperCase();
-                if (floatingCurrentLang) floatingCurrentLang.textContent = currentLanguage.toUpperCase();
-                
-                document.querySelectorAll('.language-option').forEach(opt => {
-                    opt.classList.remove('active');
-                });
-                document.querySelectorAll(`[data-lang="${currentLanguage}"]`).forEach(opt => {
-                    opt.classList.add('active');
-                });
-                
-                updateContent(currentLanguage);
+            document.querySelectorAll(`[data-lang="${lang}"]`).forEach(opt => {
+                opt.classList.add('active');
+            });
+            
+            // Update floating button text
+            if (floatingCurrentLang) {
+                floatingCurrentLang.textContent = lang.toUpperCase();
             }
         }
+
+        // Initialize on page load
+        updateActiveLanguage(currentLanguage);
+        updateNavigationLinks(currentLanguage);
+        updateContent(currentLanguage);
+        
+        // Save language preference
+        localStorage.setItem('language', currentLanguage);
     </script>
 </body>
 </html>

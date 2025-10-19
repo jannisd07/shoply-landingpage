@@ -49,16 +49,53 @@ async function initGoogleSheets() {
 // Initialize on startup
 initGoogleSheets();
 
+// Serve static files
+app.use(express.static(__dirname));
+
+// Language routing - redirect to language-specific paths
+const supportedLanguages = ['en', 'de', 'es', 'fr', 'it'];
+
+// Root path - serve English version
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "landing-page.html"));
 });
 
+// Language-specific routes for landing page
+app.get("/:lang", (req, res) => {
+  const lang = req.params.lang;
+  if (supportedLanguages.includes(lang)) {
+    res.sendFile(path.join(__dirname, "landing-page.html"));
+  } else {
+    res.status(404).send("Page not found");
+  }
+});
+
+// Pricing pages
 app.get("/pricing", (req, res) => {
   res.sendFile(path.join(__dirname, "pricing.html"));
 });
 
+app.get("/:lang/pricing", (req, res) => {
+  const lang = req.params.lang;
+  if (supportedLanguages.includes(lang)) {
+    res.sendFile(path.join(__dirname, "pricing.html"));
+  } else {
+    res.status(404).send("Page not found");
+  }
+});
+
+// How it works pages
 app.get("/how-it-works", (req, res) => {
   res.sendFile(path.join(__dirname, "how-it-works.html"));
+});
+
+app.get("/:lang/how-it-works", (req, res) => {
+  const lang = req.params.lang;
+  if (supportedLanguages.includes(lang)) {
+    res.sendFile(path.join(__dirname, "how-it-works.html"));
+  } else {
+    res.status(404).send("Page not found");
+  }
 });
 
 // Email subscription endpoint
