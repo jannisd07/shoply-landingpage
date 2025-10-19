@@ -2111,9 +2111,12 @@
         // Language switcher functionality
         const languageButton = document.getElementById('languageButton');
         const languageDropdown = document.getElementById('languageDropdown');
-        const currentFlag = document.getElementById('currentFlag');
         const currentLang = document.getElementById('currentLang');
+        const mobileLanguageButton = document.getElementById('mobileLanguageButton');
+        const mobileLanguageDropdown = document.getElementById('mobileLanguageDropdown');
+        const mobileCurrentLang = document.getElementById('mobileCurrentLang');
 
+        // Desktop language switcher
         if (languageButton) {
             languageButton.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -2126,12 +2129,19 @@
             });
         }
 
+        // Mobile language switcher
+        if (mobileLanguageButton) {
+            mobileLanguageButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileLanguageDropdown.classList.toggle('open');
+            });
+        }
+
         // Handle language selection
         document.querySelectorAll('.language-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const lang = option.dataset.lang;
-                const flag = option.dataset.flag;
                 
                 // Update active state
                 document.querySelectorAll('.language-option').forEach(opt => {
@@ -2141,15 +2151,16 @@
                     opt.classList.add('active');
                 });
                 
-                // Update button
-                if (currentFlag) currentFlag.textContent = flag;
+                // Update buttons
                 if (currentLang) currentLang.textContent = lang.toUpperCase();
+                if (mobileCurrentLang) mobileCurrentLang.textContent = languageNames[lang];
                 
                 // Update content
                 updateContent(lang);
                 
-                // Close dropdown
+                // Close dropdowns
                 if (languageDropdown) languageDropdown.classList.remove('open');
+                if (mobileLanguageDropdown) mobileLanguageDropdown.classList.remove('open');
             });
         });
 
@@ -2157,9 +2168,8 @@
         if (currentLanguage !== 'en') {
             const langOption = document.querySelector(`[data-lang="${currentLanguage}"]`);
             if (langOption) {
-                const flag = langOption.dataset.flag;
-                if (currentFlag) currentFlag.textContent = flag;
                 if (currentLang) currentLang.textContent = currentLanguage.toUpperCase();
+                if (mobileCurrentLang) mobileCurrentLang.textContent = languageNames[currentLanguage];
                 
                 document.querySelectorAll('.language-option').forEach(opt => {
                     opt.classList.remove('active');
