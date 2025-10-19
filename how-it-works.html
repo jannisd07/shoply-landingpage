@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How It Works - ShoplyAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #007AFF;
+            --primary-dark: #0051D5;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --background: #ffffff;
+            --background-alt: #f5f5f7;
+            --border: #d2d2d7;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --shadow-md: rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Segoe UI', sans-serif;
+            background: var(--background);
+            color: var(--text-primary);
+            line-height: 1.47059;
+            font-weight: 400;
+            letter-spacing: -0.022em;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        nav.scrolled {
+            box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+        }
+
+        .logo-icon svg {
+            stroke: var(--primary);
+            width: 24px;
+            height: 24px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 400;
+            opacity: 0.8;
+            transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white !important;
+            padding: 0.5rem 1rem;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.875rem;
+            transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            opacity: 0.85;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 44px;
+            padding: 6rem 1.5rem 4rem;
+            text-align: center;
+            max-width: 980px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            font-weight: 600;
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            letter-spacing: -0.015em;
+        }
+
+        .hero p {
+            font-size: 1.3125rem;
+            color: var(--text-secondary);
+            max-width: 660px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.381;
+            font-weight: 400;
+            letter-spacing: 0.012em;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 3rem 2rem 5rem;
+            background: var(--background);
+        }
+
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #2d2d2d;
+            border-radius: 18px;
+            height: 675px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 2.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        .video-placeholder {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .video-placeholder svg {
+            width: 80px;
+            height: 80px;
+            stroke: #6e6e73;
+            opacity: 0.5;
+            margin-bottom: 1rem;
+        }
+
+        .video-placeholder p {
+            color: #6e6e73;
+            font-size: 1.0625rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+            background: var(--background-alt);
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+            letter-spacing: -0.015em;
+            line-height: 1.083;
+        }
+
+        .section-header p {
+            font-size: 1.3125rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.381;
+            letter-spacing: 0.012em;
+        }
+
+        .steps {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3125rem;
+            font-weight: 600;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.3125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            letter-spacing: -0.012em;
+            line-height: 1.19;
+        }
+
+        .step p {
+            font-size: 1.0625rem;
+            color: var(--text-secondary);
+            line-height: 1.47059;
+            letter-spacing: -0.022em;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2.5rem, 5vw, 3rem);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.015em;
+            line-height: 1.083;
+            color: var(--text-primary);
+        }
+
+        .cta-section p {
+            font-size: 1.3125rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            line-height: 1.381;
+            letter-spacing: 0.012em;
+        }
+
+        .button-primary {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.0625rem;
+            transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button-primary:hover {
+            opacity: 0.85;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--background-alt);
+            padding: 2rem 2rem 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+            font-size: 0.875rem;
+            line-height: 1.47059;
+        }
+
+        .footer-section a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            line-height: 1.47059;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            animation: fadeIn 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal {
+            background: var(--background);
+            border-radius: 18px;
+            max-width: 480px;
+            width: 100%;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+        }
+
+        .modal-close:hover {
+            background: var(--background-alt);
+        }
+
+        .modal-close svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-secondary);
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--background-alt);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .modal-icon svg {
+            width: 32px;
+            height: 32px;
+            stroke: var(--primary);
+        }
+
+        .modal h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+            text-align: center;
+            letter-spacing: -0.015em;
+            line-height: 1.15;
+        }
+
+        .modal p {
+            font-size: 1.0625rem;
+            color: var(--text-secondary);
+            line-height: 1.47059;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.022em;
+        }
+
+        .modal input[type="email"] {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            font-family: inherit;
+            transition: border-color 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+            outline: none;
+        }
+
+        .modal input[type="email"]:focus {
+            border-color: var(--primary);
+        }
+
+        .modal-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 980px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1.0625rem;
+            transition: opacity 0.3s cubic-bezier(0.28, 0.11, 0.32, 1);
+            border: none;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal-button:hover {
+            opacity: 0.85;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+            width: 40px;
+            height: 40px;
+        }
+
+        .mobile-menu-toggle svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--text-primary);
+        }
+
+        .nav-links.mobile-open {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 1rem 2rem;
+            gap: 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                position: relative;
+            }
+
+            .nav-container {
+                padding: 0.75rem 1.25rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.mobile-open {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                margin-top: 44px;
+                padding: 4rem 1.25rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.0625rem;
+            }
+
+            .video-section {
+                padding: 2.5rem 1.25rem 3rem;
+            }
+
+            .video-container {
+                height: 250px;
+            }
+
+            .video-placeholder svg {
+                width: 60px;
+                height: 60px;
+            }
+
+            .features {
+                padding: 2.5rem 1.25rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .cta-section {
+                padding: 3.5rem 1.25rem;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                </div>
+                ShoplyAI
+            </a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/how-it-works">How It Works</a>
+                <button class="cta-button">Get Started</button>
+            </div>
+            <button class="mobile-menu-toggle" aria-label="Menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <line x1="3" y1="12" x2="21" y2="12"/>
+                    <line x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>See ShoplyAI in Action</h1>
+        <p>Discover how our intelligent shopping assistant makes your grocery shopping effortless and organized.</p>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <div class="video-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="features">
+        <div class="section-header">
+            <h2>How It Works</h2>
+            <p>Get started with ShoplyAI in three simple steps</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Sign Up & Set Preferences</h3>
+                <p>Create your account with email, Google, or Apple. Set your dietary preferences to get personalized recommendations and alerts.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Create Your Lists</h3>
+                <p>Add items to your shopping list. ShoplyAI automatically categorizes them and checks against your diet preferences in real-time.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Shop With Ease</h3>
+                <p>Check off items as you shop. Sort by category to navigate the store efficiently. Your lists sync across all your devices.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Get Started?</h2>
+        <p>Download ShoplyAI and experience smarter shopping today</p>
+        <button class="button-primary">Download Now</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ShoplyAI</h4>
+                <p>Your intelligent shopping companion. Built with Flutter and powered by AI.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Product</h4>
+                <a href="/">Home</a>
+                <a href="/pricing">Pricing</a>
+                <a href="/how-it-works">How It Works</a>
+            </div>
+            <div class="footer-section">
+                <h4>Platform</h4>
+                <a href="#download">iOS</a>
+                <a href="#download">Android</a>
+                <a href="#download">Web</a>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <a href="#contact">Contact</a>
+                <a href="#help">Help Center</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ShoplyAI. Built with Flutter. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Download Modal -->
+    <div class="modal-overlay" id="downloadModal">
+        <div class="modal">
+            <button class="modal-close" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+            <div class="modal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+            </div>
+            <h3>Coming Soon!</h3>
+            <p>ShoplyAI is currently in development. We're working hard to bring you the best shopping list experience. Get notified when we launch!</p>
+            <form id="emailForm" style="margin-bottom: 1rem;">
+                <input type="email" id="emailInput" placeholder="Enter your email" required>
+                <button type="submit" class="modal-button">Notify Me</button>
+            </form>
+            <p id="successMessage" style="display: none; color: var(--primary); font-weight: 500; margin-top: 0.5rem;">✓ Thanks! We'll notify you when we launch.</p>
+        </div>
+    </div>
+
+    <script>
+        // Download Modal
+        const downloadModal = document.getElementById('downloadModal');
+        const downloadButtons = document.querySelectorAll('.button-primary, .cta-button');
+        const modalClose = document.querySelector('.modal-close');
+        const emailForm = document.getElementById('emailForm');
+        const emailInput = document.getElementById('emailInput');
+        const successMessage = document.getElementById('successMessage');
+        
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                downloadModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        emailForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = emailInput.value;
+            
+            try {
+                const response = await fetch('/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email }),
+                });
+                
+                if (response.ok) {
+                    emailForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    setTimeout(() => {
+                        closeModal();
+                        emailForm.style.display = 'block';
+                        successMessage.style.display = 'none';
+                        emailInput.value = '';
+                    }, 2000);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Something went wrong. Please try again.');
+            }
+        });
+        
+        function closeModal() {
+            downloadModal.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                emailForm.style.display = 'block';
+                successMessage.style.display = 'none';
+                emailInput.value = '';
+            }, 300);
+        }
+        
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
+        }
+        
+        downloadModal.addEventListener('click', (e) => {
+            if (e.target === downloadModal) {
+                closeModal();
+            }
+        });
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && downloadModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuToggle && navLinks) {
+            mobileMenuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('mobile-open');
+            });
+
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('mobile-open');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!navbar.contains(e.target)) {
+                    navLinks.classList.remove('mobile-open');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
