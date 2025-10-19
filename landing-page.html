@@ -895,6 +895,7 @@
                 scroll-snap-type: x mandatory;
                 scrollbar-width: none; /* Firefox */
                 -ms-overflow-style: none; /* IE/Edge */
+                scroll-padding: 0 calc(50% - 140px); /* Center cards (280px card width / 2) */
             }
             
             .features-scroll-wrapper::-webkit-scrollbar {
@@ -902,8 +903,9 @@
             }
 
             .features-grid {
-                padding: 0 1.25rem;
+                padding: 0 calc(50% - 140px); /* Same as scroll-padding to center first/last card */
                 cursor: default;
+                gap: 1.5rem;
             }
             
             .features-grid:active {
@@ -914,8 +916,9 @@
                 min-width: 280px;
                 max-width: 280px;
                 padding: 2rem 1.5rem;
-                scroll-snap-align: start;
+                scroll-snap-align: center;
                 scroll-snap-stop: always;
+                flex-shrink: 0;
             }
 
             .steps {
@@ -1509,11 +1512,13 @@
             
             function goToSlide(index) {
                 if (isMobile) {
-                    // Use native scroll on mobile
+                    // Use native scroll on mobile - scroll to center the card
                     const scrollWrapper = document.querySelector('.features-scroll-wrapper');
-                    const cardWidth = getCardWidth();
+                    const cardWidth = 280; // Fixed card width
+                    const gap = 24; // 1.5rem gap in pixels
+                    const scrollPosition = index * (cardWidth + gap);
                     scrollWrapper.scrollTo({
-                        left: index * cardWidth,
+                        left: scrollPosition,
                         behavior: 'smooth'
                     });
                     currentCardIndex = index;
@@ -1654,8 +1659,9 @@
                     let scrollTimeout;
                     scrollWrapper.addEventListener('scroll', () => {
                         const scrollLeft = scrollWrapper.scrollLeft;
-                        const cardWidth = getCardWidth();
-                        const activeIndex = Math.round(scrollLeft / cardWidth);
+                        const cardWidth = 280; // Fixed card width
+                        const gap = 24; // 1.5rem gap
+                        const activeIndex = Math.round(scrollLeft / (cardWidth + gap));
                         dots.forEach((dot, index) => {
                             dot.classList.toggle('active', index === activeIndex);
                         });
