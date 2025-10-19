@@ -1932,8 +1932,15 @@
             });
 
             // Close dropdown when clicking outside
-            document.addEventListener('click', () => {
-                languageDropdown.classList.remove('open');
+            document.addEventListener('click', (e) => {
+                if (!languageButton.contains(e.target) && !languageDropdown.contains(e.target)) {
+                    languageDropdown.classList.remove('open');
+                }
+            });
+
+            // Prevent dropdown from closing when clicking inside it
+            languageDropdown.addEventListener('click', (e) => {
+                e.stopPropagation();
             });
         }
 
@@ -1952,6 +1959,11 @@
                 if (!floatingLanguageButton.contains(e.target) && !floatingLanguageDropdown.contains(e.target)) {
                     floatingLanguageDropdown.classList.remove('open');
                 }
+            });
+
+            // Prevent dropdown from closing when clicking inside it
+            floatingLanguageDropdown.addEventListener('click', (e) => {
+                e.stopPropagation();
             });
         }
 
