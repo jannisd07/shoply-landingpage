@@ -746,6 +746,106 @@
                 gap: 2rem;
             }
         }
+
+        /* Floating Language Button */
+        .floating-language-button {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .floating-language-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .floating-language-button span {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            user-select: none;
+        }
+
+        .floating-language-dropdown {
+            position: fixed;
+            bottom: 88px;
+            left: 24px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 16px;
+            padding: 8px;
+            min-width: 160px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 998;
+        }
+
+        .floating-language-dropdown.open {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .floating-language-dropdown .language-option {
+            display: block;
+            padding: 10px 14px;
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .floating-language-dropdown .language-option:hover {
+            background: rgba(0, 122, 255, 0.08);
+            color: var(--primary);
+        }
+
+        .floating-language-dropdown .language-option.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .floating-language-dropdown .language-option.active:hover {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .floating-language-button {
+                bottom: 20px;
+                left: 20px;
+                width: 48px;
+                height: 48px;
+            }
+
+            .floating-language-dropdown {
+                bottom: 76px;
+                left: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -804,6 +904,28 @@
             <a href="/how-it-works">How It Works</a>
             <button class="cta-button">Get Started</button>
         </div>
+    </div>
+
+    <!-- Floating Language Button -->
+    <button class="floating-language-button" id="floatingLanguageButton" aria-label="Change Language">
+        <span id="floatingCurrentLang">EN</span>
+    </button>
+    <div class="floating-language-dropdown" id="floatingLanguageDropdown">
+        <a href="/" class="language-option active" data-lang="en">
+            English
+        </a>
+        <a href="/de" class="language-option" data-lang="de">
+            Deutsch
+        </a>
+        <a href="/es" class="language-option" data-lang="es">
+            Español
+        </a>
+        <a href="/fr" class="language-option" data-lang="fr">
+            Français
+        </a>
+        <a href="/it" class="language-option" data-lang="it">
+            Italiano
+        </a>
     </div>
 
     <!-- Hero Section -->
@@ -1064,5 +1186,8 @@
             }, { passive: true });
         }
     </script>
+
+    <script src="translations.js"></script>
+    <script src="language-switcher.js"></script>
 </body>
 </html>
