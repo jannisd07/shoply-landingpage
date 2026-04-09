@@ -1,0 +1,501 @@
+@import "tailwindcss";
+
+:root {
+  /* Refined Dark Palette - Cool & Modern */
+  --background: #0a0a0f;
+  --background-elevated: #12121a;
+  --background-subtle: #1a1a24;
+  --foreground: #fafafa;
+  --foreground-muted: #a1a1aa;
+  --foreground-subtle: #71717a;
+  
+  /* Accent Colors - Beautiful Blue gradient palette */
+  --accent: #3b82f6;
+  --accent-light: #60a5fa;
+  --accent-lighter: #93c5fd;
+  --accent-dark: #2563eb;
+  --accent-muted: #1d4ed8;
+  --accent-subtle: rgba(59, 130, 246, 0.15);
+  
+  /* Cool neutrals */
+  --cool-100: #f4f4f5;
+  --cool-200: #e4e4e7;
+  --cool-300: #d4d4d8;
+  --cool-400: #a1a1aa;
+  --cool-500: #71717a;
+  --cool-600: #52525b;
+  --cool-700: #3f3f46;
+  --cool-800: #27272a;
+  --cool-900: #18181b;
+  
+  /* Semantic colors */
+  --success: #22c55e;
+  --error: #ef4444;
+  --warning: #f59e0b;
+  
+  /* Typography - using Next.js font variables */
+  --font-display: var(--font-syne), 'Syne', sans-serif;
+  --font-body: var(--font-outfit), 'Outfit', sans-serif;
+  
+  /* Spacing rhythm */
+  --space-unit: 8px;
+  
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+}
+
+/* Dark mode with warm undertones */
+html {
+  color-scheme: dark;
+  overflow-x: hidden;
+  /* Custom scrollbar colors for dark mode */
+  scrollbar-color: #0a0a0f #0a0a0f; /* thumb and track same as background */
+  scrollbar-width: thin; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  /* Prevent zoom on mobile */
+  touch-action: pan-x pan-y;
+  -ms-touch-action: pan-x pan-y;
+}
+
+/* Webkit scrollbar styling for Chrome/Safari */
+html::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #0a0a0f; /* Same as page background */
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #0a0a0f; /* Same as page background - invisible */
+  border-radius: 4px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #18181b; /* Slightly lighter on hover */
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.01em;
+  /* Additional scrollbar styling */
+  scrollbar-color: #0a0a0f #0a0a0f;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+  /* Prevent zoom on mobile */
+  touch-action: pan-x pan-y;
+  -ms-touch-action: pan-x pan-y;
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #0a0a0f;
+  border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #18181b;
+}
+
+/* Remove browser progress bars and accents */
+::-webkit-progress-bar {
+  display: none;
+}
+
+::-webkit-progress-value {
+  display: none;
+}
+
+/* Safari overscroll bounce color */
+body::before {
+  background: var(--background);
+}
+
+/* Prevent blue tint on mobile browsers */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    /* Prevent pinch zoom */
+    touch-action: pan-x pan-y !important;
+    -ms-touch-action: pan-x pan-y !important;
+  }
+  
+  /* Additional zoom prevention for mobile */
+  html, body {
+    touch-action: pan-x pan-y !important;
+    -ms-touch-action: pan-x pan-y !important;
+    -webkit-text-size-adjust: 100% !important;
+  }
+}
+
+/* Display font for headings */
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* Noise texture overlay */
+.noise-overlay {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Grain effect for sections */
+.grain {
+  position: relative;
+}
+
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Organic blob shapes - optimized with GPU-friendly animation */
+.blob {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: blob-morph 12s ease-in-out infinite;
+  will-change: transform;
+  contain: layout style paint;
+}
+
+@keyframes blob-morph {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(3deg);
+  }
+}
+
+/* Prevent horizontal overflow on all major elements */
+main, section, header, footer {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Sections contain their own layout for performance */
+section {
+  contain: layout style;
+}
+
+/* Performance: GPU acceleration for animations */
+.animate-pulse,
+.animate-spin,
+[class*="motion"] {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* Optimize blob animations - use GPU-friendly transforms only */
+.blob {
+  will-change: transform;
+  contain: layout style paint;
+}
+
+/* Optimize backdrop-blur elements - expensive on mobile */
+@media (max-width: 768px) {
+  .backdrop-blur-sm,
+  .backdrop-blur,
+  .backdrop-blur-xl {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Prevent iOS bounce scroll */
+html, body {
+  overscroll-behavior: none;
+}
+
+/* Safe area padding for notched devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar - neutral dark theme */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f46;
+}
+
+/* Selection styling - using accent color */
+::selection {
+  background: var(--accent);
+  color: white;
+}
+
+/* Gradient text with accent */
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient text animation */
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 6s ease infinite;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Glow pulse with accent */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.4);
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Staggered reveal animation */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal-up {
+  animation: reveal-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+/* Scale in animation */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.scale-in {
+  animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Accent button glow */
+.btn-accent {
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-accent:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), 0 0 60px rgba(59, 130, 246, 0.2);
+  transform: translateY(-2px);
+}
+
+/* Glass card effect */
+.glass-card {
+  background: rgba(20, 20, 20, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Hover lift effect */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Skip link - hidden on mobile, only visible on keyboard focus */
+.skip-link {
+  position: absolute;
+  top: -100px; /* Move further off-screen */
+  left: 0;
+  background: #18181b; /* Dark gray instead of blue */
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  transition: top 0.3s;
+  opacity: 0; /* Make it invisible by default */
+}
+
+.skip-link:focus {
+  top: 10px; /* Show on focus */
+  opacity: 1;
+  outline: 2px solid #52525b;
+}
+
+/* Hide skip link completely on mobile */
+@media (max-width: 768px) {
+  .skip-link {
+    display: none !important;
+  }
+}

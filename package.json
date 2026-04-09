@@ -1,0 +1,46 @@
+{
+  "name": "shoply-landing",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "20.x"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.4.0",
+    "@react-three/postprocessing": "^3.0.4",
+    "@studio-freight/lenis": "^1.0.42",
+    "@supabase/supabase-js": "^2.89.0",
+    "@types/three": "^0.181.0",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.23.24",
+    "googleapis": "^144.0.0",
+    "gsap": "^3.13.0",
+    "lenis": "^1.3.15",
+    "lucide-react": "^0.555.0",
+    "next": "16.0.4",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-intersection-observer": "^10.0.0",
+    "three": "^0.181.2",
+    "typescript": "^5",
+    "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.4",
+    "tailwindcss": "^4"
+  }
+}

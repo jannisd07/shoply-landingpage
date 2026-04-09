@@ -1,0 +1,18 @@
+# Shoply Robots.txt
+# https://shoply.app
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://shoply.app/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Block API routes from indexing
+Disallow: /api/
+
+# Block internal Next.js routes
+Disallow: /_next/
+Disallow: /static/
