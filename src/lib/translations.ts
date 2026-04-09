@@ -28,6 +28,14 @@ export const translations = {
         rating: 'App Store rating',
       },
       scrollToExplore: 'Scroll to explore',
+      chips: {
+        chip1Label: 'Mom added',
+        chip1Value: 'Avocados · 2',
+        chip2Label: 'Recipe saved',
+        chip2Value: 'Guacamole toast',
+        chip3Label: 'Aisle 3',
+        chip3Value: '12 items · sorted',
+      },
     },
 
     // Problem Section
@@ -340,6 +348,14 @@ export const translations = {
         rating: 'App Store-Wertung',
       },
       scrollToExplore: 'Scrollen zum Entdecken',
+      chips: {
+        chip1Label: 'Mama hat hinzugefügt',
+        chip1Value: 'Avocados · 2',
+        chip2Label: 'Rezept gespeichert',
+        chip2Value: 'Guacamole Toast',
+        chip3Label: 'Gang 3',
+        chip3Value: '12 Artikel · sortiert',
+      },
     },
 
     // Problem Section - SEO-optimized German

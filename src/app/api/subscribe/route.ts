@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { google } from 'googleapis';
+import fs from 'fs';
+import path from 'path';
 
 // Initialize Google Sheets
 async function getSheets() {
   try {
     let credentials;
-    
+
     if (process.env.GOOGLE_CREDENTIALS) {
       credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
     } else {
@@ -24,6 +26,30 @@ async function getSheets() {
   }
 }
 
+// Save email to local file as fallback
+function saveToLocalFile(email: string, date: string): boolean {
+  try {
+    const filePath = path.join(process.cwd(), 'waitlist.csv');
+
+    // Check if email already exists
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf-8');
+      if (content.split('\n').some(line => line.split(',')[0] === email)) {
+        console.log(`ℹ️ Email already in local file: ${email}`);
+        return true;
+      }
+    }
+
+    // Append new entry
+    fs.appendFileSync(filePath, `${email},${date}\n`);
+    console.log(`✅ Email saved to local file: ${email}`);
+    return true;
+  } catch (error) {
+    console.error('Error saving to local file:', error);
+    return false;
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();
@@ -38,7 +64,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid email format' }, { status: 400 });
     }
 
-    const formattedDate = new Date().toLocaleString('en-US', {
+    const formattedDate = new Date().toLocaleString('de-DE', {
       timeZone: 'Europe/Berlin',
       year: 'numeric',
       month: '2-digit',
@@ -66,7 +92,6 @@ export async function POST(request: NextRequest) {
       const emailExists = existingEmails.some((row) => row[0] === email);
 
       if (!emailExists) {
-        // Append new email
         await sheets.spreadsheets.values.append({
           spreadsheetId,
           range: `${firstSheetName}!A:B`,
@@ -77,11 +102,11 @@ export async function POST(request: NextRequest) {
         });
         console.log(`✅ Email saved to Google Sheets: ${email}`);
       } else {
-        console.log(`ℹ️ Email already exists: ${email}`);
+        console.log(`ℹ️ Email already exists in Sheets: ${email}`);
       }
     } else {
-      // For development without Google Sheets configured
-      console.log(`📝 Email received (no Google Sheets): ${email}`);
+      // Fallback: save to local file
+      saveToLocalFile(email, formattedDate);
     }
 
     return NextResponse.json({ success: true, message: 'Email saved successfully' });

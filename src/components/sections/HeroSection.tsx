@@ -134,7 +134,7 @@ export default function HeroSection() {
               className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-14"
             >
               <motion.button
-                onClick={handleScrollToFeatures}
+                onClick={openPopup}
                 className="group flex items-center gap-3 px-7 py-4 text-base font-semibold bg-[#0b1a0f] text-white rounded-full hover:bg-[#1c2e21] shadow-[0_10px_30px_-10px_rgba(11,26,15,0.4)] hover:shadow-[0_20px_50px_-10px_rgba(62,142,90,0.45)] transition-all duration-300"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
@@ -144,7 +144,7 @@ export default function HeroSection() {
               </motion.button>
 
               <motion.button
-                onClick={openPopup}
+                onClick={handleScrollToFeatures}
                 className="group flex items-center gap-2 px-7 py-4 text-base font-semibold text-[#0b1a0f] bg-white border border-[#0b1a0f]/10 rounded-full hover:border-[#3e8e5a]/40 hover:bg-[#f0f7f1] transition-all duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -251,9 +251,9 @@ export default function HeroSection() {
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="text-[11px] text-[#7a8a7f] uppercase tracking-wider">
-                  Mom added
+                  {t.hero.chips.chip1Label}
                 </span>
-                <span className="text-sm font-semibold text-[#0b1a0f]">Avocados · 2</span>
+                <span className="text-sm font-semibold text-[#0b1a0f]">{t.hero.chips.chip1Value}</span>
               </div>
             </motion.div>
 
@@ -264,16 +264,15 @@ export default function HeroSection() {
               animate={{ opacity: 1, x: 0, y: 0 }}
               transition={{ delay: 1.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               className="floating-chip absolute bottom-[14%] right-[-6%] lg:right-[-20%] animate-float"
-              // stagger anim
             >
               <div className="w-9 h-9 rounded-xl bg-[#fef3e7] flex items-center justify-center">
                 <Heart className="w-5 h-5 text-[#d79a2a] fill-[#d79a2a]" />
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="text-[11px] text-[#7a8a7f] uppercase tracking-wider">
-                  Recipe saved
+                  {t.hero.chips.chip2Label}
                 </span>
-                <span className="text-sm font-semibold text-[#0b1a0f]">Guacamole toast</span>
+                <span className="text-sm font-semibold text-[#0b1a0f]">{t.hero.chips.chip2Value}</span>
               </div>
             </motion.div>
 
@@ -290,9 +289,9 @@ export default function HeroSection() {
               </div>
               <div className="flex flex-col leading-tight">
                 <span className="text-[11px] text-[#7a8a7f] uppercase tracking-wider">
-                  Aisle 3
+                  {t.hero.chips.chip3Label}
                 </span>
-                <span className="text-sm font-semibold text-[#0b1a0f]">12 items · sorted</span>
+                <span className="text-sm font-semibold text-[#0b1a0f]">{t.hero.chips.chip3Value}</span>
               </div>
             </motion.div>
           </motion.div>
