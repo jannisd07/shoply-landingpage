@@ -21,8 +21,8 @@ export default function PrivacyContent() {
             </ul>
           )}
           {section.title === '6. Contact Us' || section.title === '6. Kontakt' ? (
-            <a href="mailto:privacy@shoply.app" className="text-blue-400 hover:underline">
-              privacy@shoply.app
+            <a href="mailto:privacy@avo.app" className="text-blue-400 hover:underline">
+              privacy@avo.app
             </a>
           ) : null}
         </section>

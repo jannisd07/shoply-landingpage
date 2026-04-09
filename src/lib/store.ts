@@ -15,7 +15,7 @@ export const useThemeStore = create<ThemeState>()(
       toggleTheme: () => set((state) => ({ theme: state.theme === 'dark' ? 'light' : 'dark' })),
     }),
     {
-      name: 'shoply-theme',
+      name: 'avo-theme',
     }
   )
 );

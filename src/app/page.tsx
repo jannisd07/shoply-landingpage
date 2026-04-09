@@ -10,6 +10,11 @@ const ProblemSection = dynamic(() => import('@/components/sections/ProblemSectio
   ssr: true,
 });
 
+const MarqueeStrip = dynamic(() => import('@/components/sections/MarqueeStrip'), {
+  loading: () => <div className="py-12" />,
+  ssr: true,
+});
+
 const FeatureSection = dynamic(() => import('@/components/sections/FeatureSection'), {
   loading: () => <SectionSkeleton />,
   ssr: true,
@@ -30,18 +35,21 @@ const CTASection = dynamic(() => import('@/components/sections/CTASection'), {
   ssr: true,
 });
 
-// Lightweight skeleton for loading states
+// Lightweight skeleton for loading states (light mode)
 function SectionSkeleton() {
   return (
-    <div className="py-24 md:py-32 bg-[#0a0a0f]">
+    <div className="py-24 md:py-32 bg-[#fafaf7]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="animate-pulse space-y-8">
-          <div className="h-8 bg-white/5 rounded-full w-32 mx-auto" />
-          <div className="h-12 bg-white/5 rounded-lg w-64 mx-auto" />
-          <div className="h-6 bg-white/5 rounded w-96 mx-auto" />
+          <div className="h-8 bg-[#0b1a0f]/[0.04] rounded-full w-32 mx-auto" />
+          <div className="h-12 bg-[#0b1a0f]/[0.04] rounded-lg w-64 mx-auto" />
+          <div className="h-6 bg-[#0b1a0f]/[0.04] rounded w-96 mx-auto" />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-64 bg-white/[0.02] rounded-2xl border border-white/5" />
+              <div
+                key={i}
+                className="h-64 bg-white rounded-2xl border border-[#0b1a0f]/[0.06]"
+              />
             ))}
           </div>
         </div>
@@ -60,10 +68,11 @@ export default function Home() {
       <main id="main-content">
         {/* Hero loads first - above the fold */}
         <HeroSection />
-        
+
         {/* Below-fold sections lazy loaded */}
         <ProblemSection />
         <FeatureSection />
+        <MarqueeStrip />
         <ExperienceSection />
         <ComparisonSection />
         <CTASection />

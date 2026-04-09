@@ -1,129 +1,117 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion';
+import { ArrowRight, ChevronDown, Sparkles, Check, ShoppingBasket, Heart } from 'lucide-react';
 import { useEmailPopup } from '@/contexts/EmailPopupContext';
 import { useLanguage } from '@/contexts/LanguageContext';
-import dynamic from 'next/dynamic';
-
-// Lazy load 3D scene for performance - delay loading until after LCP
-const Scene = dynamic(() => import('@/components/3d/Scene'), {
-  ssr: false,
-  loading: () => null,
-});
+import Image from 'next/image';
+import IPhoneMockup from '@/components/ui/IPhoneMockup';
 
 export default function HeroSection() {
-  const [show3D, setShow3D] = useState(false);
   const { openPopup } = useEmailPopup();
   const { t } = useLanguage();
+  const prefersReducedMotion = useReducedMotion();
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
+  const sectionRef = useRef<HTMLElement>(null);
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const allow3D = window.innerWidth >= 1024 && !prefersReducedMotion.matches;
+  // Scroll-linked parallax bound to the hero section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
 
-    if (!allow3D) return;
-
-    const enable = () => setShow3D(true);
-    let cancel: (() => void) | undefined;
-
-    if ('requestIdleCallback' in window) {
-      const id = (window as unknown as { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number }).requestIdleCallback(enable, { timeout: 1500 });
-      cancel = () => (window as unknown as { cancelIdleCallback?: (id: number) => void }).cancelIdleCallback?.(id);
-    } else {
-      const id = setTimeout(enable, 1200);
-      cancel = () => clearTimeout(id);
-    }
-
-    const handleMotionChange = (event: MediaQueryListEvent) => {
-      if (event.matches) {
-        setShow3D(false);
-        cancel?.();
-      }
-    };
-
-    prefersReducedMotion.addEventListener('change', handleMotionChange);
-
-    return () => {
-      cancel?.();
-      prefersReducedMotion.removeEventListener('change', handleMotionChange);
-    };
-  }, []);
+  // Parallax: call useTransform at the top level to keep hook order stable.
+  const pd = (d: number) => (prefersReducedMotion ? 0 : d);
+  const deviceY = useTransform(scrollYProgress, [0, 1], [0, pd(120)]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, pd(60)]);
+  const chipY1 = useTransform(scrollYProgress, [0, 1], [0, pd(-60)]);
+  const chipY2 = useTransform(scrollYProgress, [0, 1], [0, pd(90)]);
+  const chipY3 = useTransform(scrollYProgress, [0, 1], [0, pd(-120)]);
+  const glowY = useTransform(scrollYProgress, [0, 1], [0, pd(220)]);
 
   const handleScrollToFeatures = () => {
     const element = document.querySelector('#problem');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    element?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section
+      ref={sectionRef}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0f]"
+      className="relative min-h-[100svh] flex items-start lg:items-center justify-center overflow-hidden bg-gradient-to-b from-[#f6f7f0] via-[#fafaf7] to-[#fafaf7] pt-24 lg:pt-28 pb-16 lg:pb-24"
     >
-      {/* Organic background shapes - hidden on mobile */}
-      <div className="absolute inset-0 hidden md:block">
-        {/* Large organic blob - top left */}
-        <div className="absolute -top-1/4 -left-1/4 w-[900px] h-[900px] blob bg-gradient-to-br from-blue-500/10 via-blue-600/5 to-transparent blur-3xl" />
-        
-        {/* Secondary blob - bottom right */}
-        <div className="absolute -bottom-1/4 -right-1/4 w-[700px] h-[700px] blob bg-gradient-to-tl from-zinc-800/30 via-zinc-900/20 to-transparent blur-3xl" style={{ animationDelay: '-4s' }} />
-        
-        {/* Subtle grid overlay */}
-        <div 
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px'
-          }}
+      {/* ── Ambient light layer ──────────────────────────────────────── */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Soft green glow bottom-right */}
+        <motion.div
+          style={{ y: glowY }}
+          className="absolute -bottom-1/4 -right-1/4 w-[900px] h-[900px] blob bg-gradient-to-br from-[#c3e4ce]/80 via-[#d8ecdf]/30 to-transparent blur-[100px]"
         />
+        {/* Second warmer glow top-left */}
+        <motion.div
+          style={{ y: chipY3 }}
+          className="absolute -top-1/4 -left-1/4 w-[700px] h-[700px] blob bg-gradient-to-br from-[#eef3d6]/70 via-[#f3f4de]/20 to-transparent blur-[120px]"
+          transition={{ delay: 0.5 }}
+        />
+        {/* Dotted pattern overlay on desktop */}
+        <div className="absolute inset-0 dotted-bg opacity-40 hidden lg:block" />
       </div>
 
-      {/* 3D particles */}
-      {show3D && (
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
-          <Scene showParticles />
-        </div>
-      )}
-
-      {/* Main content - Asymmetric layout */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-32 pb-20">
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Text content - takes more space */}
-          <div className="lg:col-span-8 text-center lg:text-left">
-            {/* Badge with accent - blue on mobile and desktop */}
+      {/* ── Main hero grid ──────────────────────────────────────────── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* ── Left column: text content ─────────────────────────── */}
+          <motion.div
+            style={{ y: textY }}
+            className="lg:col-span-7 text-center lg:text-left relative"
+          >
+            {/* Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 mb-8"
+              transition={{ delay: 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-[#3e8e5a]/15 shadow-[0_4px_20px_-8px_rgba(62,142,90,0.2)] mb-7"
             >
-              <Sparkles className="w-4 h-4 text-blue-400" />
-              <span className="text-sm font-medium text-blue-400">{t.hero.badge}</span>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#3e8e5a] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#3e8e5a]" />
+              </span>
+              <Sparkles className="w-4 h-4 text-[#3e8e5a]" />
+              <span className="text-sm font-medium text-[#2d6f45]">{t.hero.badge}</span>
             </motion.div>
 
-            {/* Main Headline - Bold typography */}
+            {/* Headline */}
             <motion.h1
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-[0.95] tracking-tight mb-6"
+              transition={{ delay: 0.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold leading-[0.95] tracking-tight mb-6 text-[#0b1a0f]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              <span className="text-zinc-50">{t.hero.headline1}</span>
-              <br />
-              <span className="relative">
-                <span className="text-zinc-50">{t.hero.headline2}</span>
-                {/* Accent underline */}
-                <motion.span 
-                  className="absolute -bottom-2 left-0 h-3 bg-blue-500/30 -z-10"
-                  initial={{ width: 0 }}
-                  animate={{ width: '100%' }}
-                  transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                />
+              <span className="block">{t.hero.headline1}</span>
+              <span className="relative inline-block">
+                <span className="relative z-10 bg-gradient-to-br from-[#3e8e5a] via-[#2d6f45] to-[#1f5433] bg-clip-text text-transparent">
+                  {t.hero.headline2}
+                </span>
+                {/* Animated underline swoosh */}
+                <motion.svg
+                  className="absolute -bottom-3 left-0 w-full h-4 text-[#3e8e5a]/40"
+                  viewBox="0 0 300 12"
+                  fill="none"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ delay: 0.9, duration: 1.1, ease: 'easeOut' }}
+                  aria-hidden="true"
+                >
+                  <motion.path
+                    d="M2 8 Q 80 2, 150 6 T 298 4"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                </motion.svg>
               </span>
             </motion.h1>
 
@@ -132,34 +120,32 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-lg sm:text-xl md:text-2xl text-zinc-400 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed"
+              className="text-lg sm:text-xl text-[#4a5a4f] max-w-2xl mx-auto lg:mx-0 mb-9 leading-relaxed"
             >
               {t.hero.subheadline}{' '}
-              <span className="text-zinc-300">{t.hero.subheadline2}</span>
+              <span className="text-[#0b1a0f] font-medium">{t.hero.subheadline2}</span>
             </motion.p>
 
-            {/* CTA Buttons */}
+            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
-              className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-16"
+              transition={{ delay: 0.65, duration: 0.5 }}
+              className="flex flex-col sm:flex-row items-center lg:items-start gap-4 mb-14"
             >
-              {/* Primary CTA - Accent color */}
               <motion.button
                 onClick={handleScrollToFeatures}
-                className="group flex items-center gap-3 px-8 py-4 text-lg font-semibold bg-blue-500 text-white rounded-full hover:bg-blue-600 hover:shadow-[0_0_40px_rgba(59,130,246,0.4)] transition-all duration-300"
+                className="group flex items-center gap-3 px-7 py-4 text-base font-semibold bg-[#0b1a0f] text-white rounded-full hover:bg-[#1c2e21] shadow-[0_10px_30px_-10px_rgba(11,26,15,0.4)] hover:shadow-[0_20px_50px_-10px_rgba(62,142,90,0.45)] transition-all duration-300"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {t.hero.ctaPrimary}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
-              
-              {/* Secondary CTA - Ghost style with blue border */}
+
               <motion.button
                 onClick={openPopup}
-                className="group flex items-center gap-2 px-8 py-4 text-lg font-medium text-zinc-300 hover:text-white border border-blue-500/30 hover:border-blue-500 hover:bg-blue-500/10 rounded-full transition-all duration-300"
+                className="group flex items-center gap-2 px-7 py-4 text-base font-semibold text-[#0b1a0f] bg-white border border-[#0b1a0f]/10 rounded-full hover:border-[#3e8e5a]/40 hover:bg-[#f0f7f1] transition-all duration-300"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -167,85 +153,166 @@ export default function HeroSection() {
               </motion.button>
             </motion.div>
 
-            {/* Stats - Horizontal with dividers */}
+            {/* Stats */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.9, duration: 0.5 }}
-              className="flex flex-wrap items-center justify-center lg:justify-start gap-8 md:gap-12"
+              transition={{ delay: 0.9, duration: 0.6 }}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-x-10 gap-y-6"
             >
               {[
                 { value: '50K+', label: t.hero.stats.users },
                 { value: '10K+', label: t.hero.stats.recipes },
                 { value: '4.8', label: t.hero.stats.rating },
               ].map((stat, index) => (
-                <div key={stat.label} className="flex items-center gap-8 md:gap-12">
+                <div key={stat.label} className="flex items-center gap-8 md:gap-10">
                   <div className="text-center lg:text-left">
-                    <div className="text-3xl md:text-4xl font-bold text-zinc-50" style={{ fontFamily: 'var(--font-display)' }}>
+                    <div
+                      className="text-3xl md:text-4xl font-bold text-[#0b1a0f] tabular-nums"
+                      style={{ fontFamily: 'var(--font-display)' }}
+                    >
                       {stat.value}
                     </div>
-                    <div className="text-sm text-zinc-500 mt-1">{stat.label}</div>
+                    <div className="text-xs uppercase tracking-wider text-[#7a8a7f] mt-1">
+                      {stat.label}
+                    </div>
                   </div>
                   {index < 2 && (
-                    <div className="hidden md:block w-px h-12 bg-zinc-800" />
+                    <div className="hidden md:block w-px h-10 bg-[#0b1a0f]/10" />
                   )}
                 </div>
               ))}
             </motion.div>
-          </div>
+          </motion.div>
 
-          {/* Right side - decorative element */}
-          <motion.div 
-            className="hidden lg:flex lg:col-span-4 items-center justify-center"
-            initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            transition={{ delay: 0.8, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          {/* ── Right column: iPhone + hand + floating chips ───────── */}
+          <motion.div
+            style={{ y: deviceY }}
+            className="lg:col-span-5 relative mt-8 lg:mt-0 flex items-center justify-center min-h-[540px] lg:min-h-[680px]"
           >
-            <div className="relative">
-              {/* Static accent shapes - removed infinite animations */}
-              <div 
-                className="absolute -top-8 -right-8 w-24 h-24 rounded-3xl bg-blue-500/20 blur-xl"
-              />
-              <div 
-                className="absolute -bottom-12 -left-12 w-32 h-32 rounded-full bg-zinc-700/30 blur-xl"
-              />
-              
-              {/* Main decorative box */}
-              <div className="relative w-64 h-80 rounded-3xl bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 border border-zinc-700/50 backdrop-blur-sm p-6 flex flex-col justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-3 h-3 rounded-full bg-blue-500" />
-                  <div className="w-3 h-3 rounded-full bg-zinc-600" />
-                  <div className="w-3 h-3 rounded-full bg-zinc-600" />
-                </div>
-                <div className="space-y-3">
-                  <div className="h-3 bg-zinc-700/50 rounded-full w-3/4" />
-                  <div className="h-3 bg-zinc-700/50 rounded-full w-1/2" />
-                  <div className="h-3 bg-blue-500/30 rounded-full w-2/3" />
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
-                    <Sparkles className="w-4 h-4 text-blue-400" />
-                  </div>
-                  <div className="text-xs text-zinc-500">AI-Powered</div>
-                </div>
+            {/* Ambient green halo behind device */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] avo-glow pointer-events-none" />
+
+            {/* Soft ring */}
+            <motion.div
+              aria-hidden="true"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 1.2 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full border border-[#3e8e5a]/15"
+            />
+            <motion.div
+              aria-hidden="true"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.7, duration: 1.4 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full border border-[#3e8e5a]/10"
+            />
+
+            {/* ── iPhone mockup ─────────────────────────────────── */}
+            <motion.div
+              initial={{ opacity: 0, y: 80, rotate: -6 }}
+              animate={{ opacity: 1, y: 0, rotate: -4 }}
+              transition={{ delay: 0.3, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              className="relative z-10"
+              style={{
+                transformOrigin: 'center center',
+              }}
+            >
+              <div className="hidden lg:block">
+                <IPhoneMockup
+                  src="/images/screenshots/screenshot-1.webp"
+                  alt="Avo app — smart grocery list"
+                  width={340}
+                  priority
+                />
               </div>
-            </div>
+              <div className="lg:hidden">
+                <IPhoneMockup
+                  src="/images/screenshots/screenshot-1.webp"
+                  alt="Avo app — smart grocery list"
+                  width={280}
+                  priority
+                />
+              </div>
+            </motion.div>
+
+            {/* ── Floating UI chips ──────────────────────────────── */}
+            {/* Chip 1: top-left, notification-style */}
+            <motion.div
+              style={{ y: chipY1 }}
+              initial={{ opacity: 0, x: -40, y: -20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ delay: 1.0, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="floating-chip absolute top-[8%] left-[-4%] lg:left-[-14%] animate-float"
+            >
+              <div className="w-9 h-9 rounded-xl bg-[#e7f4ec] flex items-center justify-center">
+                <Check className="w-5 h-5 text-[#3e8e5a]" strokeWidth={3} />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span className="text-[11px] text-[#7a8a7f] uppercase tracking-wider">
+                  Mom added
+                </span>
+                <span className="text-sm font-semibold text-[#0b1a0f]">Avocados · 2</span>
+              </div>
+            </motion.div>
+
+            {/* Chip 2: bottom-right, recipe-style */}
+            <motion.div
+              style={{ y: chipY2 }}
+              initial={{ opacity: 0, x: 40, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="floating-chip absolute bottom-[14%] right-[-6%] lg:right-[-20%] animate-float"
+              // stagger anim
+            >
+              <div className="w-9 h-9 rounded-xl bg-[#fef3e7] flex items-center justify-center">
+                <Heart className="w-5 h-5 text-[#d79a2a] fill-[#d79a2a]" />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span className="text-[11px] text-[#7a8a7f] uppercase tracking-wider">
+                  Recipe saved
+                </span>
+                <span className="text-sm font-semibold text-[#0b1a0f]">Guacamole toast</span>
+              </div>
+            </motion.div>
+
+            {/* Chip 3: mid-left, basket icon */}
+            <motion.div
+              style={{ y: chipY3 }}
+              initial={{ opacity: 0, x: -30, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ delay: 1.4, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="floating-chip absolute top-[54%] left-[-8%] lg:left-[-18%] hidden sm:flex"
+            >
+              <div className="w-9 h-9 rounded-xl bg-[#ecf4fc] flex items-center justify-center">
+                <ShoppingBasket className="w-5 h-5 text-[#3b6fa8]" strokeWidth={2.5} />
+              </div>
+              <div className="flex flex-col leading-tight">
+                <span className="text-[11px] text-[#7a8a7f] uppercase tracking-wider">
+                  Aisle 3
+                </span>
+                <span className="text-sm font-semibold text-[#0b1a0f]">12 items · sorted</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator - CSS animation instead of framer-motion */}
+      {/* ── Scroll indicator ─────────────────────────────────────── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        transition={{ delay: 1.6, duration: 0.5 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden sm:block"
       >
         <button
           onClick={handleScrollToFeatures}
-          className="flex flex-col items-center gap-2 text-zinc-600 hover:text-zinc-400 transition-colors animate-bounce"
+          className="flex flex-col items-center gap-2 text-[#7a8a7f] hover:text-[#0b1a0f] transition-colors animate-bounce"
         >
-          <span className="text-xs uppercase tracking-widest">{t.hero.scrollToExplore}</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] font-medium">
+            {t.hero.scrollToExplore}
+          </span>
           <ChevronDown className="w-5 h-5" />
         </button>
       </motion.div>

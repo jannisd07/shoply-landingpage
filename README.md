@@ -1,6 +1,6 @@
-# Shoply Landing Page
+# Avo Landing Page
 
-An immersive, interactive web experience for Shoply - a collaborative shopping and recipe app with AI features. This is NOT a traditional landing page. It's a digital journey through a living landscape where users explore features by navigating through an environment.
+An immersive, interactive web experience for Avo — a collaborative shopping and recipe app with AI features. Clean light-mode minimalist aesthetic with scroll-driven parallax and pinned sections.
 
 ## 🚀 Tech Stack
 
@@ -29,7 +29,7 @@ An immersive, interactive web experience for Shoply - a collaborative shopping a
 - Smooth scrolling with Lenis
 - Responsive design (mobile-first)
 - Accessibility features (skip links, focus states, reduced motion support)
-- Dark mode by default
+- Light mode by default
 
 ## 🛠️ Getting Started
 

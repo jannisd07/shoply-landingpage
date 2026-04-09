@@ -65,7 +65,7 @@ export default function RecipeNavigation() {
                                 <ChefHat className="w-5 h-5 text-white" />
                             </motion.div>
                             <span className="text-xl font-bold text-white">
-                                Shoply <span className="text-blue-400">Recipes</span>
+                                Avo <span className="text-blue-400">Recipes</span>
                             </span>
                         </Link>
 

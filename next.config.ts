@@ -49,8 +49,8 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/:path*',
-        has: [{ type: 'host', value: 'www.shoplyai.app' }],
-        destination: 'https://shoplyai.app/:path*',
+        has: [{ type: 'host', value: 'www.avo.app' }],
+        destination: 'https://avo.app/:path*',
         permanent: true,
       },
     ];

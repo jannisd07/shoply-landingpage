@@ -9,18 +9,18 @@ export async function generateMetadata({ params }: InvitePageProps): Promise<Met
   const { id } = await params;
   
   return {
-    title: 'You\'re Invited to Join a List on Shoply',
-    description: 'Someone invited you to collaborate on a shopping list! Download Shoply to join and start shopping together.',
+    title: 'You\'re Invited to Join a List on Avo',
+    description: 'Someone invited you to collaborate on a shopping list! Download Avo to join and start shopping together.',
     openGraph: {
-      title: '🎉 You\'re Invited to Shoply!',
-      description: 'Someone invited you to collaborate on a shopping list! Download Shoply to join and start shopping together.',
-      url: `https://shoplyai.app/invite/${id}`,
-      siteName: 'Shoply',
+      title: '🎉 You\'re Invited to Avo!',
+      description: 'Someone invited you to collaborate on a shopping list! Download Avo to join and start shopping together.',
+      url: `https://avo.app/invite/${id}`,
+      siteName: 'Avo',
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: '🎉 You\'re Invited to Shoply!',
+      title: '🎉 You\'re Invited to Avo!',
       description: 'Join a shared shopping list and collaborate in real-time.',
     },
     other: {
@@ -51,7 +51,7 @@ export default async function InvitePage({ params }: InvitePageProps) {
             You&apos;re Invited!
           </h1>
           <p className="text-gray-400 text-lg">
-            Someone wants to share a shopping list with you. Join them on Shoply to collaborate in real-time!
+            Someone wants to share a shopping list with you. Join them on Avo to collaborate in real-time!
           </p>
         </div>
 
@@ -105,7 +105,7 @@ export default async function InvitePage({ params }: InvitePageProps) {
 
         {/* Features */}
         <div className="pt-6 space-y-4">
-          <h2 className="text-lg font-semibold text-white">Shop Together with Shoply</h2>
+          <h2 className="text-lg font-semibold text-white">Shop Together with Avo</h2>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div className="flex items-center gap-2 text-gray-300">
               <span className="text-purple-400">✓</span>
@@ -131,7 +131,7 @@ export default async function InvitePage({ params }: InvitePageProps) {
           href="/"
           className="inline-block text-gray-400 hover:text-white transition-colors text-sm"
         >
-          ← Back to shoplyai.app
+          ← Back to avo.app
         </Link>
       </div>
     </main>

@@ -42,15 +42,15 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
 
     if (!author) {
         return {
-            title: 'Author Not Found - Shoply',
+            title: 'Author Not Found - Avo',
         };
     }
 
     return {
-        title: `${author.displayName} - Shoply Recipes`,
+        title: `${author.displayName} - Avo Recipes`,
         description: author.bio || `Recipes by ${author.displayName}`,
         openGraph: {
-            title: `${author.displayName} - Shoply Recipes`,
+            title: `${author.displayName} - Avo Recipes`,
             description: author.bio || `Recipes by ${author.displayName}`,
             images: author.avatarUrl ? [{ url: author.avatarUrl }] : [],
         },

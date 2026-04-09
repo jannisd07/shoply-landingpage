@@ -2,19 +2,19 @@ export function OrganizationJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "Shoply",
-    "url": "https://shoply.app",
-    "logo": "https://shoply.app/images/logo.png",
+    "name": "Avo",
+    "url": "https://avo.app",
+    "logo": "https://avo.app/images/logo.png",
     "description": "AI-powered grocery shopping list app with family collaboration, recipes, and smart categorization.",
     "foundingDate": "2024",
     "sameAs": [
-      "https://twitter.com/shoplyapp",
-      "https://instagram.com/shoplyapp",
-      "https://linkedin.com/company/shoplyapp"
+      "https://twitter.com/avoapp",
+      "https://instagram.com/avoapp",
+      "https://linkedin.com/company/avoapp"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "hello@shoply.app",
+      "email": "hello@avo.app",
       "contactType": "customer service"
     }
   };
@@ -31,7 +31,7 @@ export function SoftwareApplicationJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Shoply",
+    "name": "Avo",
     "operatingSystem": ["iOS", "Android"],
     "applicationCategory": "LifestyleApplication",
     "description": "The smartest grocery shopping list app. AI-powered categorization, real-time family collaboration, 10,000+ recipes, voice control with Siri, and store deals integration.",
@@ -57,10 +57,10 @@ export function SoftwareApplicationJsonLd() {
       "Offline support",
       "Cross-platform sync"
     ],
-    "screenshot": "https://shoply.app/images/screenshots/screenshot-1.png",
+    "screenshot": "https://avo.app/images/screenshots/screenshot-1.png",
     "author": {
       "@type": "Organization",
-      "name": "Shoply"
+      "name": "Avo"
     }
   };
 
@@ -76,12 +76,12 @@ export function WebsiteJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "Shoply",
-    "url": "https://shoply.app",
+    "name": "Avo",
+    "url": "https://avo.app",
     "description": "AI-powered grocery shopping list app for smart family shopping",
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://shoply.app/search?q={search_term_string}",
+      "target": "https://avo.app/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };

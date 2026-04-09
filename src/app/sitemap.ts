@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://shoply.app';
+  const baseUrl = 'https://avo.app';
   const lastModified = new Date();
 
   return [

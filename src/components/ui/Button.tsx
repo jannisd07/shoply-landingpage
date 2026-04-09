@@ -29,40 +29,41 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       relative inline-flex items-center justify-center gap-2
       font-semibold rounded-full
       transition-all duration-300 ease-out
-      focus:outline-none focus:ring-2 focus:ring-[blue-500]/50 focus:ring-offset-2 focus:ring-offset-transparent
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3e8e5a]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-white
       disabled:opacity-50 disabled:cursor-not-allowed
       overflow-hidden
     `;
 
     const variants = {
       primary: `
-        bg-zinc-900
-        text-zinc-50
-        border border-zinc-700
-        hover:border-zinc-600
-        hover:bg-zinc-800
+        bg-[#0b1a0f]
+        text-white
+        border border-[#0b1a0f]
+        hover:bg-[#1c2e21]
+        shadow-[0_8px_24px_-10px_rgba(11,26,15,0.4)]
+        hover:shadow-[0_14px_36px_-10px_rgba(62,142,90,0.45)]
       `,
       secondary: `
-        bg-zinc-800/50
-        text-zinc-300
-        border border-zinc-700/50
-        hover:border-zinc-600
-        hover:bg-zinc-800
-        hover:text-zinc-50
+        bg-white
+        text-[#0b1a0f]
+        border border-[#0b1a0f]/10
+        hover:border-[#3e8e5a]/40
+        hover:bg-[#f0f7f1]
       `,
       ghost: `
         bg-transparent
-        text-zinc-400
-        border border-zinc-700
-        hover:text-zinc-50 
-        hover:bg-zinc-800/50 
-        hover:border-zinc-600
+        text-[#4a5a4f]
+        border border-transparent
+        hover:text-[#0b1a0f]
+        hover:bg-[#f0f7f1]
       `,
       accent: `
-        bg-[blue-500]
-        text-[#0d0d0d]
+        bg-[#3e8e5a]
+        text-white
         border border-transparent
-        hover:shadow-[0_0_30px_rgba(212,245,66,0.4)]
+        shadow-[0_8px_24px_-8px_rgba(62,142,90,0.5)]
+        hover:bg-[#2d6f45]
+        hover:shadow-[0_14px_36px_-8px_rgba(62,142,90,0.6)]
       `,
     };
 

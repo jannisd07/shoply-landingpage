@@ -23,7 +23,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
     
     // Check localStorage for saved preference
-    const saved = localStorage.getItem('shoply-locale') as Locale | null;
+    const saved = localStorage.getItem('avo-locale') as Locale | null;
     if (saved && (saved === 'en' || saved === 'de')) {
       setLocaleState(saved);
     }
@@ -31,7 +31,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
-    localStorage.setItem('shoply-locale', newLocale);
+    localStorage.setItem('avo-locale', newLocale);
     // Update HTML lang attribute
     document.documentElement.lang = newLocale;
   };

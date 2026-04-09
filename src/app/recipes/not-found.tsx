@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ChefHat, Search, ArrowLeft } from 'lucide-react';
 
 export const metadata: Metadata = {
-    title: 'Recipe Not Found - Shoply',
+    title: 'Recipe Not Found - Avo',
     description: 'The recipe you are looking for could not be found.',
 };
 

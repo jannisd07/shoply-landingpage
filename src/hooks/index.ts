@@ -1,10 +1,11 @@
 export { useMousePosition } from './useMousePosition';
 export { useScrollPosition } from './useScrollPosition';
-export { 
-  useMediaQuery, 
-  useIsMobile, 
-  useIsTablet, 
-  useIsDesktop, 
+export { useParallax } from './useParallax';
+export {
+  useMediaQuery,
+  useIsMobile,
+  useIsTablet,
+  useIsDesktop,
   usePrefersReducedMotion,
-  usePrefersDarkMode 
+  usePrefersDarkMode
 } from './useMediaQuery';

@@ -1,7 +1,7 @@
 // Cookie utilities for storing user preferences without login
 
-const SAVED_RECIPES_KEY = 'shoply_saved_recipes';
-const COOKIE_CONSENT_KEY = 'shoply_cookie_consent';
+const SAVED_RECIPES_KEY = 'avo_saved_recipes';
+const COOKIE_CONSENT_KEY = 'avo_cookie_consent';
 
 // Check if cookies are allowed (Cookiebot consent)
 export function hasCookieConsent(): boolean {

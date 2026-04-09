@@ -21,8 +21,8 @@ export default function TermsContent() {
             </ul>
           )}
           {section.title === '8. Contact' || section.title === '8. Kontakt' ? (
-            <a href="mailto:legal@shoply.app" className="text-blue-400 hover:underline">
-              legal@shoply.app
+            <a href="mailto:legal@avo.app" className="text-blue-400 hover:underline">
+              legal@avo.app
             </a>
           ) : null}
         </section>

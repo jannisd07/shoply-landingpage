@@ -1,6 +1,6 @@
 {
-  "name": "Shoply",
-  "short_name": "Shoply",
+  "name": "Avo",
+  "short_name": "Avo",
   "icons": [
     {
       "src": "/favicon-32x32.png",
@@ -23,7 +23,7 @@
       "type": "image/svg+xml"
     }
   ],
-  "theme_color": "#0a0a0a",
-  "background_color": "#0a0a0a",
+  "theme_color": "#fafaf7",
+  "background_color": "#fafaf7",
   "display": "standalone"
 }

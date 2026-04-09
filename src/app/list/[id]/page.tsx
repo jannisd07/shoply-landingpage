@@ -9,19 +9,19 @@ export async function generateMetadata({ params }: ListPageProps): Promise<Metad
   const { id } = await params;
   
   return {
-    title: 'Shopping List on Shoply',
-    description: 'View this shopping list in the Shoply app. Collaborate in real-time with family and never forget an item again.',
+    title: 'Shopping List on Avo',
+    description: 'View this shopping list in the Avo app. Collaborate in real-time with family and never forget an item again.',
     openGraph: {
-      title: '🛒 Shopping List on Shoply',
-      description: 'View this shopping list in the Shoply app. Collaborate in real-time with family and never forget an item again.',
-      url: `https://shoplyai.app/list/${id}`,
-      siteName: 'Shoply',
+      title: '🛒 Shopping List on Avo',
+      description: 'View this shopping list in the Avo app. Collaborate in real-time with family and never forget an item again.',
+      url: `https://avo.app/list/${id}`,
+      siteName: 'Avo',
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: '🛒 Shopping List on Shoply',
-      description: 'View this shopping list in the Shoply app.',
+      title: '🛒 Shopping List on Avo',
+      description: 'View this shopping list in the Avo app.',
     },
     other: {
       'apple-itunes-app': 'app-id=6743532834, app-argument=shoply://list/' + id,
@@ -48,10 +48,10 @@ export default async function ListPage({ params }: ListPageProps) {
         {/* Title */}
         <div className="space-y-3">
           <h1 className="text-3xl font-bold text-white">
-            View this List in Shoply
+            View this List in Avo
           </h1>
           <p className="text-gray-400 text-lg">
-            Someone shared a shopping list with you! Open it in Shoply to view items and collaborate in real-time.
+            Someone shared a shopping list with you! Open it in Avo to view items and collaborate in real-time.
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export default async function ListPage({ params }: ListPageProps) {
           href={deepLink}
           className="block w-full py-4 px-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40"
         >
-          Open in Shoply
+          Open in Avo
         </a>
 
         {/* Divider */}
@@ -105,7 +105,7 @@ export default async function ListPage({ params }: ListPageProps) {
 
         {/* Features */}
         <div className="pt-6 space-y-4">
-          <h2 className="text-lg font-semibold text-white">Why Shoply?</h2>
+          <h2 className="text-lg font-semibold text-white">Why Avo?</h2>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div className="flex items-center gap-2 text-gray-300">
               <span className="text-blue-400">✓</span>
@@ -131,7 +131,7 @@ export default async function ListPage({ params }: ListPageProps) {
           href="/"
           className="inline-block text-gray-400 hover:text-white transition-colors text-sm"
         >
-          ← Back to shoplyai.app
+          ← Back to avo.app
         </Link>
       </div>
     </main>

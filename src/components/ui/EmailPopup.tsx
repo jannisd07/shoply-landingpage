@@ -18,20 +18,20 @@ export default function EmailPopup({ isOpen, onClose }: EmailPopupProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email) return;
-    
+
     setStatus('loading');
-    
+
     try {
       const response = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
-      
+
       const data = await response.json();
-      
+
       if (response.ok) {
         setStatus('success');
         setMessage(t.emailPopup.success);
@@ -61,35 +61,43 @@ export default function EmailPopup({ isOpen, onClose }: EmailPopupProps) {
           onClick={onClose}
         >
           {/* Backdrop */}
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-[#0b1a0f]/55 backdrop-blur-sm" />
 
           {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-md bg-[#141414] rounded-2xl border border-white/10 overflow-hidden"
+            exit={{ opacity: 0, scale: 0.96, y: 20 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full max-w-md bg-white rounded-[28px] border border-[#0b1a0f]/8 shadow-[0_40px_100px_-20px_rgba(11,26,15,0.35)] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-colors"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#f7f6f1] border border-[#0b1a0f]/8 flex items-center justify-center text-[#4a5a4f] hover:text-[#0b1a0f] hover:bg-white transition-colors z-10"
+              aria-label="Close"
             >
               <X className="w-4 h-4" />
             </button>
 
-            <div className="p-8">
+            {/* Ambient green wash at top */}
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#e7f4ec] to-transparent pointer-events-none" />
+
+            <div className="relative p-8">
               {/* Icon */}
-              <div className="w-16 h-16 rounded-2xl bg-zinc-800 border border-zinc-700 flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#5aa873] to-[#2d6f45] border border-[#3e8e5a]/20 shadow-[0_12px_30px_-10px_rgba(62,142,90,0.5)] flex items-center justify-center mx-auto mb-6">
                 <Mail className="w-8 h-8 text-white" />
               </div>
 
               {/* Title */}
-              <h2 className="text-2xl font-bold text-white text-center mb-2">
+              <h2
+                className="text-2xl font-bold text-[#0b1a0f] text-center mb-2 tracking-tight"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
                 {t.emailPopup.title}
               </h2>
-              <p className="text-zinc-400 text-center mb-6">
+              <p className="text-[#4a5a4f] text-center mb-6">
                 {t.emailPopup.description}
               </p>
 
@@ -101,7 +109,7 @@ export default function EmailPopup({ isOpen, onClose }: EmailPopupProps) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t.emailPopup.placeholder}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-zinc-500 focus:outline-none focus:border-blue-500/50 transition-colors"
+                    className="w-full px-4 py-3.5 bg-[#fafaf7] border border-[#0b1a0f]/10 rounded-xl text-[#0b1a0f] placeholder-[#7a8a7f] focus:outline-none focus:border-[#3e8e5a]/60 focus:bg-white transition-colors"
                     disabled={status === 'loading' || status === 'success'}
                   />
                 </div>
@@ -109,11 +117,15 @@ export default function EmailPopup({ isOpen, onClose }: EmailPopupProps) {
                 <button
                   type="submit"
                   disabled={status === 'loading' || status === 'success' || !email}
-                  className="w-full px-4 py-3 bg-gradient-to-b from-[#0d1a2d] to-[#091322] border border-blue-500/50 rounded-xl text-white font-medium hover:border-blue-400/70 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full px-4 py-3.5 bg-[#0b1a0f] hover:bg-[#1c2e21] rounded-xl text-white font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-[0_10px_30px_-10px_rgba(11,26,15,0.4)]"
                 >
                   {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
-                  {status === 'success' && <CheckCircle className="w-4 h-4 text-green-400" />}
-                  {status === 'loading' ? t.emailPopup.submitting : status === 'success' ? t.emailPopup.subscribed : t.emailPopup.button}
+                  {status === 'success' && <CheckCircle className="w-4 h-4 text-[#9dd4ae]" />}
+                  {status === 'loading'
+                    ? t.emailPopup.submitting
+                    : status === 'success'
+                    ? t.emailPopup.subscribed
+                    : t.emailPopup.button}
                 </button>
 
                 {/* Status message */}
@@ -122,7 +134,7 @@ export default function EmailPopup({ isOpen, onClose }: EmailPopupProps) {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`flex items-center gap-2 text-sm ${
-                      status === 'success' ? 'text-green-400' : 'text-red-400'
+                      status === 'success' ? 'text-[#2d6f45]' : 'text-[#c9583c]'
                     }`}
                   >
                     {status === 'error' && <AlertCircle className="w-4 h-4" />}
@@ -132,7 +144,7 @@ export default function EmailPopup({ isOpen, onClose }: EmailPopupProps) {
               </form>
 
               {/* Privacy note */}
-              <p className="text-xs text-zinc-500 text-center mt-4">
+              <p className="text-xs text-[#7a8a7f] text-center mt-5">
                 {t.emailPopup.privacy}
               </p>
             </div>

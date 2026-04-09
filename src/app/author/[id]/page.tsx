@@ -9,19 +9,19 @@ export async function generateMetadata({ params }: AuthorPageProps): Promise<Met
   const { id } = await params;
   
   return {
-    title: 'Recipe Author on Shoply',
-    description: 'Discover delicious recipes from this author on Shoply. Download the app to explore their full collection.',
+    title: 'Recipe Author on Avo',
+    description: 'Discover delicious recipes from this author on Avo. Download the app to explore their full collection.',
     openGraph: {
-      title: '👨‍🍳 Recipe Author on Shoply',
-      description: 'Discover delicious recipes from this author on Shoply. Download the app to explore their full collection.',
-      url: `https://shoplyai.app/author/${id}`,
-      siteName: 'Shoply',
+      title: '👨‍🍳 Recipe Author on Avo',
+      description: 'Discover delicious recipes from this author on Avo. Download the app to explore their full collection.',
+      url: `https://avo.app/author/${id}`,
+      siteName: 'Avo',
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: '👨‍🍳 Recipe Author on Shoply',
-      description: 'Discover delicious recipes on Shoply.',
+      title: '👨‍🍳 Recipe Author on Avo',
+      description: 'Discover delicious recipes on Avo.',
     },
     other: {
       'apple-itunes-app': 'app-id=6743532834, app-argument=shoply://author/' + id,
@@ -51,7 +51,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
             Discover This Chef&apos;s Recipes
           </h1>
           <p className="text-gray-400 text-lg">
-            Open Shoply to explore all recipes from this author and add ingredients directly to your shopping list.
+            Open Avo to explore all recipes from this author and add ingredients directly to your shopping list.
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
           href={deepLink}
           className="block w-full py-4 px-6 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg shadow-orange-500/25 hover:shadow-orange-500/40"
         >
-          View in Shoply
+          View in Avo
         </a>
 
         {/* Divider */}
@@ -105,7 +105,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
 
         {/* Features */}
         <div className="pt-6 space-y-4">
-          <h2 className="text-lg font-semibold text-white">Why Shoply?</h2>
+          <h2 className="text-lg font-semibold text-white">Why Avo?</h2>
           <div className="grid grid-cols-2 gap-4 text-sm">
             <div className="flex items-center gap-2 text-gray-300">
               <span className="text-orange-400">✓</span>
@@ -131,7 +131,7 @@ export default async function AuthorPage({ params }: AuthorPageProps) {
           href="/"
           className="inline-block text-gray-400 hover:text-white transition-colors text-sm"
         >
-          ← Back to shoplyai.app
+          ← Back to avo.app
         </Link>
       </div>
     </main>

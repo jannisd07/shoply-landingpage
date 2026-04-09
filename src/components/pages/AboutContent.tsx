@@ -40,8 +40,8 @@ export default function AboutContent() {
         <h2 className="text-xl font-bold text-white mb-2">{t.about.contact.title}</h2>
         <p className="text-zinc-400">
           {t.about.contact.text}{' '}
-          <a href="mailto:hello@shoply.app" className="text-blue-400 hover:underline">
-            hello@shoply.app
+          <a href="mailto:hello@avo.app" className="text-blue-400 hover:underline">
+            hello@avo.app
           </a>
         </p>
       </section>

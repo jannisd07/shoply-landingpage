@@ -25,18 +25,18 @@ export async function generateMetadata({ params }: RecipePageProps): Promise<Met
 
     if (!recipe) {
         return {
-            title: 'Recipe Not Found - Shoply',
+            title: 'Recipe Not Found - Avo',
         };
     }
 
     return {
-        title: `${recipe.name} - Shoply Recipes`,
+        title: `${recipe.name} - Avo Recipes`,
         description: recipe.description,
         openGraph: {
-            title: `${recipe.name} - Shoply Recipes`,
+            title: `${recipe.name} - Avo Recipes`,
             description: recipe.description,
-            url: `https://shoplyai.app/recipes/${id}`,
-            siteName: 'Shoply',
+            url: `https://avo.app/recipes/${id}`,
+            siteName: 'Avo',
             images: recipe.imageUrl ? [{ url: recipe.imageUrl }] : [],
             type: 'article',
         },
@@ -74,11 +74,11 @@ export default async function RecipeDetailPage({ params }: RecipePageProps) {
         } : undefined,
     };
 
-    const recipeUrl = `https://shoplyai.app/recipes/${id}`;
+    const recipeUrl = `https://avo.app/recipes/${id}`;
 
     const breadcrumbs = [
-        { name: 'Home', url: 'https://shoplyai.app' },
-        { name: 'Recipes', url: 'https://shoplyai.app/recipes' },
+        { name: 'Home', url: 'https://avo.app' },
+        { name: 'Recipes', url: 'https://avo.app/recipes' },
         { name: recipe.name, url: recipeUrl },
     ];
 

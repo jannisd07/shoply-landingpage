@@ -15,17 +15,17 @@ export const translations = {
 
     // Hero Section
     hero: {
-      badge: 'AI-Powered Shopping Lists',
-      headline1: 'Smart Grocery',
-      headline2: 'Shopping List',
-      subheadline: 'AI-powered shopping lists with family collaboration.',
-      subheadline2: '10,000+ recipes. Never forget an item again.',
-      ctaPrimary: 'Start Your Journey',
-      ctaSecondary: 'Get Notified',
+      badge: 'AI-powered grocery lists',
+      headline1: 'Grocery shopping,',
+      headline2: 'finally fresh.',
+      subheadline: 'Avo turns your family\'s shopping into a calm, collaborative ritual —',
+      subheadline2: 'AI-sorted lists, 10,000+ recipes, and a list everyone shares in real time.',
+      ctaPrimary: 'Start shopping smarter',
+      ctaSecondary: 'Get notified at launch',
       stats: {
-        users: 'Active Users',
-        recipes: 'Recipes',
-        rating: 'App Rating',
+        users: 'Active families',
+        recipes: 'Recipes inside',
+        rating: 'App Store rating',
       },
       scrollToExplore: 'Scroll to explore',
     },
@@ -105,9 +105,9 @@ export const translations = {
 
     // Experience Section
     experience: {
-      badge: 'How Shoply Works',
+      badge: 'How Avo Works',
       headline: 'Smarter Grocery Shopping',
-      subheadline: "See how Shoply's AI-powered features make family shopping effortless.",
+      subheadline: "See how Avo's AI-powered features make family shopping effortless.",
       blocks: [
         {
           title: 'AI That Learns How You Shop',
@@ -118,7 +118,7 @@ export const translations = {
         {
           title: 'Share Shopping Lists with Family',
           description: 'Collaborate in real-time with family members. Share grocery lists instantly and see live updates as items are added, edited, or checked off. Perfect for busy families.',
-          stat: { value: '50,000+', label: 'families using Shoply' },
+          stat: { value: '50,000+', label: 'families using Avo' },
           features: ['Real-time sync across devices', 'Instant list sharing', 'Family activity feed'],
         },
         {
@@ -165,7 +165,7 @@ export const translations = {
         privacy: 'Privacy Policy',
         terms: 'Terms of Service',
       },
-      copyright: 'Shoply. All rights reserved.',
+      copyright: 'Avo. All rights reserved.',
       builtWith: 'Built with',
       inGermany: 'in Germany',
     },
@@ -173,7 +173,7 @@ export const translations = {
     // Email Popup
     emailPopup: {
       title: 'Coming Soon!',
-      description: 'Shoply is launching soon. Enter your email to be notified when we go live.',
+      description: 'Avo is launching soon. Enter your email to be notified when we go live.',
       placeholder: 'Enter your email',
       button: 'Notify Me',
       submitting: 'Submitting...',
@@ -193,12 +193,12 @@ export const translations = {
 
     // Comparison Section
     comparison: {
-      badge: 'Why Choose ShoplyAI',
-      headline: 'Traditional Apps vs. ShoplyAI',
+      badge: 'Why Choose Avo',
+      headline: 'Traditional Apps vs. Avo',
       subheadline: 'See why families are switching to the smartest grocery list app.',
       oldWay: 'Old Way',
       feature: 'Feature',
-      shoply: 'ShoplyAI',
+      shoply: 'Avo',
       items: [
         { feature: 'List Synchronization', oldWay: 'No sync', newWay: 'Real-time family sync' },
         { feature: 'Item Categorization', oldWay: 'Manual sorting', newWay: 'AI auto-categorization' },
@@ -246,29 +246,29 @@ export const translations = {
     // FAQ Page
     faq: {
       title: 'Frequently Asked Questions',
-      subtitle: 'Find answers to common questions about Shoply, the AI-powered grocery shopping list app designed for families.',
+      subtitle: 'Find answers to common questions about Avo, the AI-powered grocery shopping list app designed for families.',
       items: [
-        { question: 'When will the Shoply grocery app be available?', answer: 'Shoply is currently in development. Sign up for our newsletter to be notified when we launch on iOS and Android!' },
-        { question: 'Is Shoply free to download and use?', answer: 'Yes! Shoply will have a generous free tier that includes unlimited shopping lists, AI-powered categorization, and list sharing with up to 3 family members. Premium features will be available for a monthly subscription.' },
-        { question: 'What platforms does Shoply support?', answer: 'Shoply will be available on iPhone (iOS) and Android devices at launch. A web version for desktop browsers is planned for the future.' },
+        { question: 'When will the Avo grocery app be available?', answer: 'Avo is currently in development. Sign up for our newsletter to be notified when we launch on iOS and Android!' },
+        { question: 'Is Avo free to download and use?', answer: 'Yes! Avo will have a generous free tier that includes unlimited shopping lists, AI-powered categorization, and list sharing with up to 3 family members. Premium features will be available for a monthly subscription.' },
+        { question: 'What platforms does Avo support?', answer: 'Avo will be available on iPhone (iOS) and Android devices at launch. A web version for desktop browsers is planned for the future.' },
         { question: 'How does the AI grocery categorization work?', answer: 'Our AI automatically recognizes grocery items you add and sorts them into store categories like Produce, Dairy, Meat, Frozen, etc. It learns your shopping preferences over time to provide smarter product suggestions.' },
-        { question: 'Can I share shopping lists with my family?', answer: 'Absolutely! Shoply is built for family collaboration. Share grocery lists with family members and see real-time updates as items are added, edited, or checked off. Perfect for couples, families, and roommates.' },
+        { question: 'Can I share shopping lists with my family?', answer: 'Absolutely! Avo is built for family collaboration. Share grocery lists with family members and see real-time updates as items are added, edited, or checked off. Perfect for couples, families, and roommates.' },
         { question: 'How does recipe-to-shopping-list work?', answer: 'Browse our library of 10,000+ recipes, find one you like, and tap once to instantly add all ingredients to your shopping list. You can also filter recipes by dietary restrictions and allergies.' },
         { question: 'Is my shopping data private and secure?', answer: 'Yes. We take your privacy seriously. All data is encrypted in transit and at rest. We never sell your personal information to third parties. See our Privacy Policy for full details.' },
-        { question: 'Does Shoply work offline at the grocery store?', answer: 'Yes! Shoply works fully offline so you can access your shopping lists even without internet connection at the store. Your lists sync automatically when you reconnect.' },
+        { question: 'Does Avo work offline at the grocery store?', answer: 'Yes! Avo works fully offline so you can access your shopping lists even without internet connection at the store. Your lists sync automatically when you reconnect.' },
       ],
     },
 
     // About Page
     about: {
-      title: 'About Shoply',
+      title: 'About Avo',
       mission: {
         title: 'Our Mission',
-        text: 'We believe grocery shopping should be simple, collaborative, and even enjoyable. Shoply was born from the frustration of forgotten items, miscommunicated lists, and the daily chaos of feeding a family.',
+        text: 'We believe grocery shopping should be simple, collaborative, and even enjoyable. Avo was born from the frustration of forgotten items, miscommunicated lists, and the daily chaos of feeding a family.',
       },
       building: {
         title: 'What We\'re Building',
-        text: 'Shoply is an AI-powered shopping list app that learns your preferences, keeps your family in sync, and makes meal planning a breeze. We\'re combining cutting-edge technology with thoughtful design to reimagine how you shop.',
+        text: 'Avo is an AI-powered shopping list app that learns your preferences, keeps your family in sync, and makes meal planning a breeze. We\'re combining cutting-edge technology with thoughtful design to reimagine how you shop.',
       },
       values: {
         title: 'Our Values',
@@ -290,8 +290,8 @@ export const translations = {
       lastUpdated: 'Last updated: November 2024',
       sections: [
         { title: '1. Information We Collect', content: 'We collect information you provide directly:', items: ['Email address (for account and notifications)', 'Shopping list data and preferences', 'Recipe favorites and cooking history', 'Device information for app functionality'] },
-        { title: '2. How We Use Your Information', items: ['To provide and improve Shoply\'s features', 'To personalize your experience with AI recommendations', 'To enable list sharing and collaboration', 'To send important updates about the service'] },
-        { title: '3. Data Sharing', content: 'We do not sell your personal information. We may share data only with:', items: ['Service providers who help us operate Shoply', 'Other users you explicitly choose to share lists with', 'Legal authorities when required by law'] },
+        { title: '2. How We Use Your Information', items: ['To provide and improve Avo\'s features', 'To personalize your experience with AI recommendations', 'To enable list sharing and collaboration', 'To send important updates about the service'] },
+        { title: '3. Data Sharing', content: 'We do not sell your personal information. We may share data only with:', items: ['Service providers who help us operate Avo', 'Other users you explicitly choose to share lists with', 'Legal authorities when required by law'] },
         { title: '4. Data Security', content: 'We implement industry-standard security measures to protect your data, including encryption in transit and at rest.' },
         { title: '5. Your Rights', content: 'You have the right to:', items: ['Access your personal data', 'Request data deletion', 'Export your data', 'Opt out of marketing communications'] },
         { title: '6. Contact Us', content: 'For privacy-related questions, contact us at' },
@@ -303,12 +303,12 @@ export const translations = {
       title: 'Terms of Service',
       lastUpdated: 'Last updated: November 2024',
       sections: [
-        { title: '1. Acceptance of Terms', content: 'By accessing or using Shoply, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the service.' },
-        { title: '2. Description of Service', content: 'Shoply is a collaborative shopping list application with AI-powered features, recipe integration, and family sharing capabilities.' },
-        { title: '3. User Accounts', items: ['You must provide accurate information when creating an account', 'You are responsible for maintaining the security of your account', 'You must be at least 13 years old to use Shoply'] },
+        { title: '1. Acceptance of Terms', content: 'By accessing or using Avo, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the service.' },
+        { title: '2. Description of Service', content: 'Avo is a collaborative shopping list application with AI-powered features, recipe integration, and family sharing capabilities.' },
+        { title: '3. User Accounts', items: ['You must provide accurate information when creating an account', 'You are responsible for maintaining the security of your account', 'You must be at least 13 years old to use Avo'] },
         { title: '4. Acceptable Use', content: 'You agree not to:', items: ['Use the service for any illegal purpose', 'Attempt to gain unauthorized access to the service', 'Interfere with or disrupt the service', 'Share content that violates others\' rights'] },
-        { title: '5. Intellectual Property', content: 'The Shoply service, including all content, features, and functionality, is owned by Shoply and protected by copyright and other laws.' },
-        { title: '6. Limitation of Liability', content: 'Shoply is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the service.' },
+        { title: '5. Intellectual Property', content: 'The Avo service, including all content, features, and functionality, is owned by Avo and protected by copyright and other laws.' },
+        { title: '6. Limitation of Liability', content: 'Avo is provided "as is" without warranties of any kind. We are not liable for any damages arising from your use of the service.' },
         { title: '7. Changes to Terms', content: 'We may update these terms from time to time. Continued use of the service after changes constitutes acceptance of the new terms.' },
         { title: '8. Contact', content: 'Questions about these terms? Contact us at' },
       ],
@@ -328,128 +328,128 @@ export const translations = {
     // Hero Section - SEO-optimized German
     hero: {
       badge: 'KI-gestützte Einkaufslisten',
-      headline1: 'Intelligente',
-      headline2: 'Einkaufsliste',
-      subheadline: 'KI-gestützte Einkaufslisten mit Familien-Zusammenarbeit.',
-      subheadline2: 'Über 10.000 Rezepte. Nie wieder etwas vergessen.',
-      ctaPrimary: 'Jetzt starten',
-      ctaSecondary: 'Benachrichtigen',
+      headline1: 'Einkaufen,',
+      headline2: 'endlich einfach.',
+      subheadline: 'Avo organisiert deine Einkäufe, teilt Listen mit der Familie —',
+      subheadline2: 'KI-sortiert, mit 10.000+ Rezepten, für alle in Echtzeit.',
+      ctaPrimary: 'Kostenlos vormerken',
+      ctaSecondary: 'Zum Start informieren',
       stats: {
-        users: 'Aktive Nutzer',
+        users: 'Aktive Familien',
         recipes: 'Rezepte',
-        rating: 'App-Bewertung',
+        rating: 'App Store-Wertung',
       },
       scrollToExplore: 'Scrollen zum Entdecken',
     },
 
     // Problem Section - SEO-optimized German
     problem: {
-      badge: 'Das Problem',
-      headline: 'Kommt dir bekannt vor?',
+      badge: 'Hand aufs Herz.',
+      headline: 'Kennst du das?',
       cards: [
         {
-          title: 'Milch vergessen... schon wieder?',
-          subtitle: 'Papier-Listen gehen verloren, reißen oder werden vergessen',
+          title: 'Milch. Schon wieder.',
+          subtitle: 'Immer fehlt genau das eine.',
         },
         {
-          title: 'Chaos in jedem Gang',
-          subtitle: 'Zeitverschwendung beim Suchen nach zufällig platzierten Artikeln',
+          title: '10 Minuten suchen.',
+          subtitle: 'Weil kein Plan, kein Überblick.',
         },
         {
-          title: 'Alleine einkaufen, gemeinsam vergessen',
-          subtitle: 'Familienmitglieder kaufen doppelt oder vergessen Artikel',
+          title: 'Papa kauft. Mama auch.',
+          subtitle: 'Doppelt eingekauft, doppelt vergeudet.',
         },
         {
-          title: 'Vom Rezept zum Regal',
-          subtitle: 'Das Rezept braucht 15 Zutaten, du vergisst 5 davon',
+          title: '15 Zutaten. 5 vergessen.',
+          subtitle: 'Das Rezept klappt trotzdem nicht.',
         },
         {
-          title: 'Doppelt kaufen, einmal wegwerfen',
-          subtitle: 'Doppelte Käufe, abgelaufene Lebensmittel und unnötige Ausgaben',
+          title: 'Wegwerfen statt essen.',
+          subtitle: 'Zu viel, zu doppelt, zu spät.',
         },
       ],
     },
 
     // Feature Section - SEO-optimized German
     features: {
-      badge: 'Funktionen',
-      headline: 'Alles was deine Familie braucht',
-      subheadline: 'Leistungsstarke Einkaufslisten-Funktionen, die Zeit sparen und deine Familie organisiert halten.',
+      badge: 'Was Avo kann',
+      headline: 'Deine Familie. Immer in sync.',
+      subheadline: 'Alles, was du beim Einkaufen wirklich brauchst.',
       plusMore: 'Und noch mehr...',
       mainFeatures: [
         {
-          title: 'KI-gestützte smarte Kategorisierung',
-          description: 'Unser intelligenter Einkaufslisten-Organizer sortiert Artikel automatisch in Kategorien wie Obst & Gemüse, Milchprodukte und Fleisch. Er lernt deine Einkaufsgewohnheiten für personalisierte Vorschläge.',
-          benefits: ['Automatische Kategorisierung', 'Lernt Einkaufsvorlieben', 'Intelligente Produktvorschläge'],
+          title: 'KI sortiert. Du kaufst.',
+          description: 'Avo erkennt jeden Artikel und sortiert ihn automatisch — nach Gang, Kategorie, Supermarkt. Keine Zettelwirtschaft mehr, keine Sucherei.',
+          benefits: ['Automatisch sortiert', 'Lernt deine Gewohnheiten', 'Immer der kürzeste Weg'],
         },
         {
-          title: 'Echtzeit-Zusammenarbeit mit der Familie',
-          description: 'Teile Einkaufslisten mit Familienmitgliedern und kauft gemeinsam in Echtzeit ein. Perfekt für Familien, WGs und Paare, die organisiert bleiben wollen.',
-          benefits: ['Sofortige Synchronisation', 'Geteilte Familienlisten', 'Live-Aktivitätsupdates'],
+          title: 'Alle auf einer Liste.',
+          description: 'Teile die Liste mit deiner Familie — in Echtzeit. Was Papa hinzufügt, sieht Mama sofort. Kein doppelter Kauf mehr.',
+          benefits: ['Echtzeit für alle', 'Sofort geteilt', 'Live-Updates'],
         },
         {
-          title: 'Rezepte & Essensplanung',
-          description: 'Durchstöbere über 10.000 Rezepte und füge alle Zutaten mit einem Tippen zu deiner Einkaufsliste hinzu. Plane Mahlzeiten für die Woche und erstelle automatisch Einkaufslisten.',
-          benefits: ['Ein-Tippen-Zutaten-Hinzufügen', 'Diät- & Allergiefilter', 'Schritt-für-Schritt Kochanleitungen'],
+          title: 'Rezept? Direkt eingekauft.',
+          description: 'Über 10.000 Rezepte. Ein Tipp — alle Zutaten landen auf der Liste. Kochen war noch nie so entspannt.',
+          benefits: ['10.000+ Rezepte', 'Allergie- & Diätfilter', 'Schritt-für-Schritt kochen'],
         },
       ],
       additionalFeatures: [
         {
-          title: 'Sprachsteuerung & Siri',
-          description: 'Artikel freihändig mit Siri hinzufügen',
-          fullDescription: 'Sag einfach "Hey Siri, füge Milch zu meiner Einkaufsliste hinzu" und fertig. Unsere tiefe Siri-Integration funktioniert mit allen Apple-Geräten – perfekt beim Kochen oder Autofahren.',
-          benefits: ['Siri Kurzbefehle Integration', 'Funktioniert freihändig', 'Natürliche Sprachunterstützung'],
+          title: 'Einfach sagen.',
+          description: 'Freihändig hinzufügen mit Siri',
+          fullDescription: '"Hey Siri, Milch auf die Liste" — fertig. Kein Tippen, kein Suchen. Einfach sagen, während du kochst oder fährst.',
+          benefits: ['Siri-Integration', 'Freihändig', 'Natürliche Sprache'],
         },
         {
-          title: 'Angebote & Prospekte',
-          description: 'Live-Angebote von Lidl, REWE, Aldi & mehr',
-          fullDescription: 'Verpasse nie wieder ein Angebot. Wir sammeln wöchentliche Prospekte und Sonderangebote deiner Lieblingsgeschäfte und zeigen dir automatisch, wenn Artikel auf deiner Liste reduziert sind.',
-          benefits: ['Wöchentliche Prospekt-Integration', 'Preisvergleich', 'Angebots-Benachrichtigungen'],
+          title: 'Deals kommen zu dir.',
+          description: 'Angebote von Lidl, REWE, Aldi & mehr',
+          fullDescription: 'Kein Prospekte blättern mehr. Avo zeigt dir live, wenn Artikel auf deiner Liste gerade im Angebot sind — bei deinem Supermarkt.',
+          benefits: ['Live-Angebote', 'Preisvergleich', 'Benachrichtigung bei Deals'],
         },
         {
-          title: 'Allergie-Management',
-          description: 'Automatische Alternativen für Ernährungsbedürfnisse',
-          fullDescription: 'Lege die Ernährungseinschränkungen deiner Familie einmal fest und wir kümmern uns um den Rest. Rezepte schlagen automatisch sichere Alternativen vor und Einkaufslisten warnen vor potenziellen Allergenen.',
-          benefits: ['Allergen-Warnungen', 'Sichere Alternativen', 'Familienprofil-Unterstützung'],
+          title: 'Allergien? Kein Stress.',
+          description: 'Automatische Alternativen für deine Familie',
+          fullDescription: 'Einmal Unverträglichkeiten eintragen — Avo warnt automatisch und schlägt Alternativen vor. Für alle in der Familie.',
+          benefits: ['Allergen-Warnungen', 'Sichere Alternativen', 'Familienprofile'],
         },
       ],
     },
 
     // Experience Section - SEO-optimized German
     experience: {
-      badge: 'So funktioniert Shoply',
-      headline: 'Intelligenter Lebensmitteleinkauf',
-      subheadline: 'Entdecke, wie Shoplys KI-gestützte Funktionen den Familieneinkauf mühelos machen.',
+      badge: 'So einfach geht\'s',
+      headline: 'So einfach war Einkaufen nie.',
+      subheadline: 'Kein Tippen, kein Vergessen, kein Stress.',
       blocks: [
         {
-          title: 'KI, die deine Einkaufsgewohnheiten lernt',
-          description: 'Unsere smarte KI kategorisiert Lebensmittel automatisch und lernt deine Einkaufsvorlieben. Erhalte personalisierte Produktvorschläge und optimierte Ladenwege.',
-          stat: { value: '95%', label: 'Kategorisierungsgenauigkeit' },
-          features: ['Auto-Kategorisierung nach Gang', 'Personalisierte Vorschläge', 'Lernt deine Vorlieben'],
+          title: 'KI, die für dich denkt.',
+          description: 'Avo kategorisiert jeden Artikel automatisch und lernt, wie du einkaufst. Kein Sortieren, kein Suchen — nur einkaufen.',
+          stat: { value: '95%', label: 'Genauigkeit bei der Kategorisierung' },
+          features: ['Automatisch nach Gang sortiert', 'Lernt deine Gewohnheiten', 'Smarte Vorschläge'],
         },
         {
-          title: 'Einkaufslisten mit der Familie teilen',
-          description: 'Arbeite in Echtzeit mit Familienmitgliedern zusammen. Teile Einkaufslisten sofort und sieh Live-Updates, wenn Artikel hinzugefügt, bearbeitet oder abgehakt werden.',
-          stat: { value: '50.000+', label: 'Familien nutzen Shoply' },
-          features: ['Echtzeit-Sync auf allen Geräten', 'Sofortiges Listen-Teilen', 'Familien-Aktivitätsfeed'],
+          title: 'Familie? Alle dabei.',
+          description: 'Deine Liste, für alle. Mama, Papa, Kinder — alle sehen in Echtzeit, was auf der Liste steht. Kein doppelter Kauf, kein "Hast du...?"',
+          stat: { value: '50.000+', label: 'Familien nutzen Avo' },
+          features: ['Echtzeit für alle Geräte', 'Sofort teilen', 'Live-Updates'],
         },
         {
-          title: 'Vom Rezept zur Einkaufsliste in einem Tippen',
-          description: 'Durchstöbere über 10.000 Rezepte mit Diätfiltern. Gefunden, was du kochen willst? Tippe einmal, um alle Zutaten direkt zu deiner Einkaufsliste hinzuzufügen.',
-          stat: { value: '10.000+', label: 'Rezepte zum Entdecken' },
-          features: ['Allergie- & Diätfilter', 'Schritt-für-Schritt Anleitungen', 'Lieblingsrezepte speichern'],
+          title: 'Rezept → Liste. Fertig.',
+          description: 'Über 10.000 Rezepte. Gefällt dir eins? Ein Tipp — alle Zutaten sind auf der Liste. Kochst du heute Abend, kaufst du heute Nachmittag richtig ein.',
+          stat: { value: '10.000+', label: 'Rezepte enthalten' },
+          features: ['Allergie- & Diätfilter', 'Schritt-für-Schritt kochen', 'Lieblinge speichern'],
         },
       ],
     },
 
     // CTA Section - SEO-optimized German
     cta: {
-      badge: 'Kostenlos herunterladen',
-      headline: 'Lade die beste',
-      headline2: 'Einkaufslisten-App herunter',
-      subheadline: 'Schließe dich',
+      badge: 'Kostenlos · Kein Stress',
+      headline: 'Nie wieder',
+      headline2: 'vergessen.',
+      subheadline: 'Schon',
       subheadlineHighlight: '50.000+',
-      subheadline2: 'Familien an, die die smarteste Einkaufslisten-App nutzen',
+      subheadline2: 'Familien kaufen smarter ein — mit Avo.',
       rating: '4,8/5,0',
       users: '50K+ Nutzer',
       appStore: {
@@ -477,7 +477,7 @@ export const translations = {
         privacy: 'Datenschutz',
         terms: 'Nutzungsbedingungen',
       },
-      copyright: 'Shoply. Alle Rechte vorbehalten.',
+      copyright: 'Avo. Alle Rechte vorbehalten.',
       builtWith: 'Entwickelt mit',
       inGermany: 'in Deutschland',
     },
@@ -485,7 +485,7 @@ export const translations = {
     // Email Popup - SEO-optimized German
     emailPopup: {
       title: 'Bald verfügbar!',
-      description: 'Shoply startet bald. Gib deine E-Mail ein, um benachrichtigt zu werden, wenn wir live gehen.',
+      description: 'Avo startet bald. Gib deine E-Mail ein, um benachrichtigt zu werden, wenn wir live gehen.',
       placeholder: 'Deine E-Mail-Adresse',
       button: 'Benachrichtigen',
       submitting: 'Wird gesendet...',
@@ -505,23 +505,23 @@ export const translations = {
 
     // Comparison Section - SEO-optimized German
     comparison: {
-      badge: 'Warum ShoplyAI wählen',
-      headline: 'Herkömmliche Apps vs. ShoplyAI',
-      subheadline: 'Erfahre, warum Familien zur intelligentesten Einkaufslisten-App wechseln.',
+      badge: 'Ehrlich gesagt',
+      headline: 'Alle anderen. Und Avo.',
+      subheadline: 'Kein Vergleich.',
       oldWay: 'Früher',
       feature: 'Funktion',
-      shoply: 'ShoplyAI',
+      shoply: 'Avo',
       items: [
-        { feature: 'Listen-Synchronisation', oldWay: 'Keine Sync', newWay: 'Echtzeit-Familien-Sync' },
-        { feature: 'Artikel-Kategorisierung', oldWay: 'Manuelles Sortieren', newWay: 'KI-Auto-Kategorisierung' },
-        { feature: 'Rezept-Zutaten', oldWay: 'Jeden Artikel tippen', newWay: 'Ein-Tipp alle hinzufügen' },
-        { feature: 'Geteilte Einkaufslisten', oldWay: 'Nur alleine', newWay: 'Familien-Zusammenarbeit' },
-        { feature: 'Sprachsteuerung', oldWay: 'Nicht verfügbar', newWay: 'Siri & Sprachsteuerung' },
-        { feature: 'Supermarkt-Angebote', oldWay: 'Prospekte prüfen', newWay: 'Live-Angebots-Alerts' },
-        { feature: 'Allergie-Warnungen', oldWay: 'Etiketten lesen', newWay: 'Smarte Ersatzvorschläge' },
-        { feature: 'Offline-Einkaufen', oldWay: 'Papier-Backup', newWay: 'Voller Offline-Modus' },
+        { feature: 'Synchronisation', oldWay: 'Kein Sync', newWay: 'Echtzeit für alle' },
+        { feature: 'Kategorisierung', oldWay: 'Alles von Hand', newWay: 'KI macht\'s automatisch' },
+        { feature: 'Zutaten', oldWay: 'Tippen, tippen, tippen', newWay: 'Ein Tipp reicht' },
+        { feature: 'Teilen', oldWay: 'Nur allein', newWay: 'Familie immer dabei' },
+        { feature: 'Sprachsteuerung', oldWay: 'Nicht möglich', newWay: 'Einfach sagen' },
+        { feature: 'Angebote', oldWay: 'Prospekte wälzen', newWay: 'Deals kommen zu dir' },
+        { feature: 'Allergien', oldWay: 'Etiketten lesen', newWay: 'Avo warnt dich' },
+        { feature: 'Offline', oldWay: 'Papierzettel', newWay: 'Auch ohne WLAN' },
       ],
-      ctaText: 'Bereit für besseres Einkaufen?',
+      ctaText: 'Zeit für einen Wechsel.',
       ctaButton: 'Kostenlos starten',
     },
 
@@ -558,29 +558,29 @@ export const translations = {
     // FAQ Page - German
     faq: {
       title: 'Häufig gestellte Fragen',
-      subtitle: 'Finde Antworten auf häufige Fragen zu Shoply, der KI-gestützten Einkaufslisten-App für Familien.',
+      subtitle: 'Finde Antworten auf häufige Fragen zu Avo, der KI-gestützten Einkaufslisten-App für Familien.',
       items: [
-        { question: 'Wann wird die Shoply-App verfügbar sein?', answer: 'Shoply befindet sich derzeit in der Entwicklung. Melde dich für unseren Newsletter an, um benachrichtigt zu werden, wenn wir auf iOS und Android starten!' },
-        { question: 'Ist Shoply kostenlos?', answer: 'Ja! Shoply wird eine großzügige kostenlose Version haben, die unbegrenzte Einkaufslisten, KI-gestützte Kategorisierung und Listen-Teilen mit bis zu 3 Familienmitgliedern umfasst. Premium-Funktionen sind gegen ein monatliches Abonnement verfügbar.' },
-        { question: 'Welche Plattformen unterstützt Shoply?', answer: 'Shoply wird zum Start auf iPhone (iOS) und Android-Geräten verfügbar sein. Eine Web-Version für Desktop-Browser ist für die Zukunft geplant.' },
+        { question: 'Wann wird die Avo-App verfügbar sein?', answer: 'Avo befindet sich derzeit in der Entwicklung. Melde dich für unseren Newsletter an, um benachrichtigt zu werden, wenn wir auf iOS und Android starten!' },
+        { question: 'Ist Avo kostenlos?', answer: 'Ja! Avo wird eine großzügige kostenlose Version haben, die unbegrenzte Einkaufslisten, KI-gestützte Kategorisierung und Listen-Teilen mit bis zu 3 Familienmitgliedern umfasst. Premium-Funktionen sind gegen ein monatliches Abonnement verfügbar.' },
+        { question: 'Welche Plattformen unterstützt Avo?', answer: 'Avo wird zum Start auf iPhone (iOS) und Android-Geräten verfügbar sein. Eine Web-Version für Desktop-Browser ist für die Zukunft geplant.' },
         { question: 'Wie funktioniert die KI-Kategorisierung?', answer: 'Unsere KI erkennt automatisch Lebensmittel, die du hinzufügst, und sortiert sie in Laden-Kategorien wie Obst & Gemüse, Milchprodukte, Fleisch, Tiefkühl usw. Sie lernt deine Einkaufsvorlieben und macht smartere Produktvorschläge.' },
-        { question: 'Kann ich Einkaufslisten mit meiner Familie teilen?', answer: 'Absolut! Shoply ist für Familien-Zusammenarbeit gebaut. Teile Einkaufslisten mit Familienmitgliedern und sieh Echtzeit-Updates, wenn Artikel hinzugefügt, bearbeitet oder abgehakt werden. Perfekt für Paare, Familien und WGs.' },
+        { question: 'Kann ich Einkaufslisten mit meiner Familie teilen?', answer: 'Absolut! Avo ist für Familien-Zusammenarbeit gebaut. Teile Einkaufslisten mit Familienmitgliedern und sieh Echtzeit-Updates, wenn Artikel hinzugefügt, bearbeitet oder abgehakt werden. Perfekt für Paare, Familien und WGs.' },
         { question: 'Wie funktioniert Rezept-zu-Einkaufsliste?', answer: 'Durchstöbere unsere Bibliothek mit über 10.000 Rezepten, finde eines, das dir gefällt, und tippe einmal, um alle Zutaten sofort zu deiner Einkaufsliste hinzuzufügen. Du kannst Rezepte auch nach Diät und Allergien filtern.' },
         { question: 'Sind meine Einkaufsdaten privat und sicher?', answer: 'Ja. Wir nehmen deine Privatsphäre ernst. Alle Daten sind während der Übertragung und im Ruhezustand verschlüsselt. Wir verkaufen niemals deine persönlichen Daten an Dritte. Siehe unsere Datenschutzerklärung für Details.' },
-        { question: 'Funktioniert Shoply offline im Laden?', answer: 'Ja! Shoply funktioniert vollständig offline, sodass du auch ohne Internetverbindung im Laden auf deine Einkaufslisten zugreifen kannst. Deine Listen synchronisieren sich automatisch, wenn du wieder online bist.' },
+        { question: 'Funktioniert Avo offline im Laden?', answer: 'Ja! Avo funktioniert vollständig offline, sodass du auch ohne Internetverbindung im Laden auf deine Einkaufslisten zugreifen kannst. Deine Listen synchronisieren sich automatisch, wenn du wieder online bist.' },
       ],
     },
 
     // About Page - German
     about: {
-      title: 'Über Shoply',
+      title: 'Über Avo',
       mission: {
         title: 'Unsere Mission',
-        text: 'Wir glauben, dass Einkaufen einfach, gemeinschaftlich und sogar angenehm sein sollte. Shoply wurde aus der Frustration über vergessene Artikel, falsch kommunizierte Listen und dem täglichen Chaos beim Versorgen einer Familie geboren.',
+        text: 'Wir glauben, dass Einkaufen einfach, gemeinschaftlich und sogar angenehm sein sollte. Avo wurde aus der Frustration über vergessene Artikel, falsch kommunizierte Listen und dem täglichen Chaos beim Versorgen einer Familie geboren.',
       },
       building: {
         title: 'Was wir entwickeln',
-        text: 'Shoply ist eine KI-gestützte Einkaufslisten-App, die deine Vorlieben lernt, deine Familie synchron hält und die Mahlzeitenplanung zum Kinderspiel macht. Wir kombinieren modernste Technologie mit durchdachtem Design, um das Einkaufen neu zu definieren.',
+        text: 'Avo ist eine KI-gestützte Einkaufslisten-App, die deine Vorlieben lernt, deine Familie synchron hält und die Mahlzeitenplanung zum Kinderspiel macht. Wir kombinieren modernste Technologie mit durchdachtem Design, um das Einkaufen neu zu definieren.',
       },
       values: {
         title: 'Unsere Werte',
@@ -602,8 +602,8 @@ export const translations = {
       lastUpdated: 'Zuletzt aktualisiert: November 2024',
       sections: [
         { title: '1. Welche Daten wir erheben', content: 'Wir erheben Informationen, die du direkt bereitstellst:', items: ['E-Mail-Adresse (für Konto und Benachrichtigungen)', 'Einkaufslisten-Daten und Präferenzen', 'Rezept-Favoriten und Kochverlauf', 'Geräteinformationen für App-Funktionalität'] },
-        { title: '2. Wie wir deine Daten nutzen', items: ['Um Shoplys Funktionen bereitzustellen und zu verbessern', 'Um dein Erlebnis mit KI-Empfehlungen zu personalisieren', 'Um Listen-Teilen und Zusammenarbeit zu ermöglichen', 'Um wichtige Updates zum Service zu senden'] },
-        { title: '3. Datenweitergabe', content: 'Wir verkaufen deine persönlichen Daten nicht. Wir teilen Daten nur mit:', items: ['Dienstleistern, die uns beim Betrieb von Shoply helfen', 'Anderen Nutzern, mit denen du Listen teilen möchtest', 'Behörden, wenn gesetzlich vorgeschrieben'] },
+        { title: '2. Wie wir deine Daten nutzen', items: ['Um Avos Funktionen bereitzustellen und zu verbessern', 'Um dein Erlebnis mit KI-Empfehlungen zu personalisieren', 'Um Listen-Teilen und Zusammenarbeit zu ermöglichen', 'Um wichtige Updates zum Service zu senden'] },
+        { title: '3. Datenweitergabe', content: 'Wir verkaufen deine persönlichen Daten nicht. Wir teilen Daten nur mit:', items: ['Dienstleistern, die uns beim Betrieb von Avo helfen', 'Anderen Nutzern, mit denen du Listen teilen möchtest', 'Behörden, wenn gesetzlich vorgeschrieben'] },
         { title: '4. Datensicherheit', content: 'Wir implementieren branchenübliche Sicherheitsmaßnahmen zum Schutz deiner Daten, einschließlich Verschlüsselung während der Übertragung und im Ruhezustand.' },
         { title: '5. Deine Rechte', content: 'Du hast das Recht:', items: ['Auf Zugriff deiner persönlichen Daten', 'Auf Löschung deiner Daten', 'Auf Export deiner Daten', 'Auf Abmeldung von Marketing-Kommunikation'] },
         { title: '6. Kontakt', content: 'Bei Fragen zum Datenschutz kontaktiere uns unter' },
@@ -615,12 +615,12 @@ export const translations = {
       title: 'Nutzungsbedingungen',
       lastUpdated: 'Zuletzt aktualisiert: November 2024',
       sections: [
-        { title: '1. Annahme der Bedingungen', content: 'Durch Zugriff oder Nutzung von Shoply erklärst du dich mit diesen Nutzungsbedingungen einverstanden. Wenn du diesen Bedingungen nicht zustimmst, nutze den Service bitte nicht.' },
-        { title: '2. Beschreibung des Services', content: 'Shoply ist eine kollaborative Einkaufslisten-Anwendung mit KI-gestützten Funktionen, Rezept-Integration und Familien-Sharing-Möglichkeiten.' },
-        { title: '3. Benutzerkonten', items: ['Du musst bei der Kontoerstellung genaue Angaben machen', 'Du bist für die Sicherheit deines Kontos verantwortlich', 'Du musst mindestens 13 Jahre alt sein, um Shoply zu nutzen'] },
+        { title: '1. Annahme der Bedingungen', content: 'Durch Zugriff oder Nutzung von Avo erklärst du dich mit diesen Nutzungsbedingungen einverstanden. Wenn du diesen Bedingungen nicht zustimmst, nutze den Service bitte nicht.' },
+        { title: '2. Beschreibung des Services', content: 'Avo ist eine kollaborative Einkaufslisten-Anwendung mit KI-gestützten Funktionen, Rezept-Integration und Familien-Sharing-Möglichkeiten.' },
+        { title: '3. Benutzerkonten', items: ['Du musst bei der Kontoerstellung genaue Angaben machen', 'Du bist für die Sicherheit deines Kontos verantwortlich', 'Du musst mindestens 13 Jahre alt sein, um Avo zu nutzen'] },
         { title: '4. Akzeptable Nutzung', content: 'Du stimmst zu, Folgendes nicht zu tun:', items: ['Den Service für illegale Zwecke nutzen', 'Versuchen, unbefugten Zugang zum Service zu erlangen', 'Den Service stören oder beeinträchtigen', 'Inhalte teilen, die Rechte anderer verletzen'] },
-        { title: '5. Geistiges Eigentum', content: 'Der Shoply-Service, einschließlich aller Inhalte, Funktionen und Features, ist Eigentum von Shoply und durch Urheber- und andere Gesetze geschützt.' },
-        { title: '6. Haftungsbeschränkung', content: 'Shoply wird "wie besehen" ohne jegliche Garantien bereitgestellt. Wir haften nicht für Schäden, die aus der Nutzung des Services entstehen.' },
+        { title: '5. Geistiges Eigentum', content: 'Der Avo-Service, einschließlich aller Inhalte, Funktionen und Features, ist Eigentum von Avo und durch Urheber- und andere Gesetze geschützt.' },
+        { title: '6. Haftungsbeschränkung', content: 'Avo wird "wie besehen" ohne jegliche Garantien bereitgestellt. Wir haften nicht für Schäden, die aus der Nutzung des Services entstehen.' },
         { title: '7. Änderungen der Bedingungen', content: 'Wir können diese Bedingungen von Zeit zu Zeit aktualisieren. Die weitere Nutzung des Services nach Änderungen gilt als Zustimmung zu den neuen Bedingungen.' },
         { title: '8. Kontakt', content: 'Fragen zu diesen Bedingungen? Kontaktiere uns unter' },
       ],

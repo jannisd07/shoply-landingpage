@@ -17,7 +17,7 @@ async function getAuthorIds(): Promise<string[]> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    const baseUrl = 'https://shoplyai.app';
+    const baseUrl = 'https://avo.app';
 
     // Static pages
     const staticPages: MetadataRoute.Sitemap = [

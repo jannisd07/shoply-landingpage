@@ -22,12 +22,12 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://shoply.app'),
+  metadataBase: new URL('https://avo.app'),
   title: {
-    default: "Shoply - AI-Powered Grocery Shopping List App | Smart Family Shopping",
-    template: "%s | Shoply",
+    default: "Avo - AI-Powered Grocery Shopping List App | Smart Family Shopping",
+    template: "%s | Avo",
   },
-  description: "Shoply is the #1 AI-powered grocery shopping list app. Smart categorization, real-time family collaboration, 10,000+ recipes, and voice control. Free for iOS & Android. Never forget an item again!",
+  description: "Avo is the smartest AI-powered grocery shopping list app. Smart categorization, real-time family collaboration, 10,000+ recipes, and voice control. Free for iOS & Android. Never forget an item again.",
   keywords: [
     "grocery shopping list app",
     "AI shopping list",
@@ -45,11 +45,11 @@ export const metadata: Metadata = {
     "meal planning app",
     "food shopping app",
   ],
-  authors: [{ name: "Shoply", url: "https://shoply.app" }],
-  creator: "Shoply",
-  publisher: "Shoply",
+  authors: [{ name: "Avo", url: "https://avo.app" }],
+  creator: "Avo",
+  publisher: "Avo",
   category: "Shopping",
-  applicationName: "Shoply",
+  applicationName: "Avo",
   generator: "Next.js",
   referrer: "origin-when-cross-origin",
   formatDetection: {
@@ -58,16 +58,16 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Shoply - The Smartest Way to Shop for Groceries",
+    title: "Avo - The Smartest Way to Shop for Groceries",
     description: "AI-powered shopping lists with real-time family collaboration, 10,000+ recipes, and smart categorization. Download free on iOS & Android.",
-    url: "https://shoply.app",
-    siteName: "Shoply",
+    url: "https://avo.app",
+    siteName: "Avo",
     images: [
       {
         url: "/images/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Shoply - AI-Powered Grocery Shopping List App",
+        alt: "Avo - AI-Powered Grocery Shopping List App",
         type: "image/png",
       },
     ],
@@ -76,11 +76,11 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shoply - AI-Powered Grocery Shopping Made Easy",
+    title: "Avo - AI-Powered Grocery Shopping Made Easy",
     description: "Smart shopping lists, family collaboration, 10,000+ recipes. Free for iOS & Android.",
     images: ["/images/og-image.png"],
-    creator: "@shoplyapp",
-    site: "@shoplyapp",
+    creator: "@avoapp",
+    site: "@avoapp",
   },
   robots: {
     index: true,
@@ -97,18 +97,17 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon-32x32.png?v=2", type: "image/png", sizes: "32x32" },
-      { url: "/favicon.png?v=2", type: "image/png", sizes: "64x64" },
-      { url: "/favicon.svg?v=2", type: "image/svg+xml" },
+      { url: "/favicon-32x32.png?v=4", type: "image/png", sizes: "32x32" },
+      { url: "/favicon.png?v=4", type: "image/png", sizes: "64x64" },
     ],
-    shortcut: "/favicon-32x32.png?v=2",
+    shortcut: "/favicon-32x32.png?v=4",
     apple: [
-      { url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png?v=4", sizes: "180x180", type: "image/png" },
     ],
   },
   manifest: "/site.webmanifest",
   alternates: {
-    canonical: "https://shoply.app",
+    canonical: "https://avo.app",
   },
   verification: {
     google: "your-google-verification-code",
@@ -120,7 +119,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#0a0a0f",
+  themeColor: "#fafaf7",
 };
 
 export default function RootLayout({
@@ -129,24 +128,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         {/* Preconnect for critical resources */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+        <link rel="preconnect" href="https://images.unsplash.com" />
+
         {/* DNS Prefetch for performance */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-        
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
       </head>
-      <body className={`${syne.variable} ${outfit.variable} antialiased bg-[#0a0a0f] text-zinc-50`}>
-        {/* Noise texture overlay for depth */}
+      <body className={`${syne.variable} ${outfit.variable} antialiased bg-[#fafaf7] text-[#0b1a0f]`}>
+        {/* Subtle noise texture overlay for depth */}
         <div className="noise-overlay" aria-hidden="true" />
         {/* Structured Data for SEO */}
         <OrganizationJsonLd />
         <SoftwareApplicationJsonLd />
         <WebsiteJsonLd />
-        
+
         <LanguageProvider>
           <AuthProvider>
             <EmailPopupProvider>

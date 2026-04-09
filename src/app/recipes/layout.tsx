@@ -4,19 +4,19 @@ import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
     title: {
-        default: 'Recipes - Shoply',
-        template: '%s | Shoply Recipes',
+        default: 'Recipes - Avo',
+        template: '%s | Avo Recipes',
     },
-    description: 'Discover delicious recipes from the Shoply community. Browse thousands of recipes, filter by diet, cuisine, and cooking time.',
-    keywords: ['recipes', 'cooking', 'food', 'meals', 'healthy recipes', 'quick recipes', 'dinner ideas', 'Shoply'],
-    authors: [{ name: 'Shoply' }],
-    creator: 'Shoply',
-    publisher: 'Shoply',
+    description: 'Discover delicious recipes from the Avo community. Browse thousands of recipes, filter by diet, cuisine, and cooking time.',
+    keywords: ['recipes', 'cooking', 'food', 'meals', 'healthy recipes', 'quick recipes', 'dinner ideas', 'Avo'],
+    authors: [{ name: 'Avo' }],
+    creator: 'Avo',
+    publisher: 'Avo',
     openGraph: {
-        title: 'Recipes - Shoply',
-        description: 'Discover delicious recipes from the Shoply community',
-        url: 'https://shoplyai.app/recipes',
-        siteName: 'Shoply',
+        title: 'Recipes - Avo',
+        description: 'Discover delicious recipes from the Avo community',
+        url: 'https://avo.app/recipes',
+        siteName: 'Avo',
         type: 'website',
         locale: 'en_US',
         images: [
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
                 url: '/og-recipes.png',
                 width: 1200,
                 height: 630,
-                alt: 'Shoply Recipes',
+                alt: 'Avo Recipes',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Recipes - Shoply',
-        description: 'Discover delicious recipes from the Shoply community',
+        title: 'Recipes - Avo',
+        description: 'Discover delicious recipes from the Avo community',
         images: ['/og-recipes.png'],
     },
     robots: {
@@ -46,10 +46,10 @@ export const metadata: Metadata = {
         },
     },
     alternates: {
-        canonical: 'https://shoplyai.app/recipes',
+        canonical: 'https://avo.app/recipes',
         languages: {
-            'en-US': 'https://shoplyai.app/recipes',
-            'de-DE': 'https://shoplyai.app/de/recipes',
+            'en-US': 'https://avo.app/recipes',
+            'de-DE': 'https://avo.app/de/recipes',
         },
     },
 };

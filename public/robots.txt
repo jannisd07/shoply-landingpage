@@ -1,11 +1,11 @@
-# Shoply Robots.txt
-# https://shoply.app
+# Avo Robots.txt
+# https://avo.app
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://shoply.app/sitemap.xml
+Sitemap: https://avo.app/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1
