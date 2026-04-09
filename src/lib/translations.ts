@@ -126,7 +126,7 @@ export const translations = {
         {
           title: 'Share Shopping Lists with Family',
           description: 'Collaborate in real-time with family members. Share grocery lists instantly and see live updates as items are added, edited, or checked off. Perfect for busy families.',
-          stat: { value: '50,000+', label: 'families using Avo' },
+          stat: { value: '15', label: 'families using Avo' },
           features: ['Real-time sync across devices', 'Instant list sharing', 'Family activity feed'],
         },
         {
@@ -144,10 +144,10 @@ export const translations = {
       headline: 'Download the Best',
       headline2: 'Grocery Shopping App',
       subheadline: 'Join',
-      subheadlineHighlight: '50,000+',
-      subheadline2: 'families using the smartest grocery list app',
-      rating: '4.8/5.0',
-      users: '50K+ Users',
+      subheadlineHighlight: '15',
+      subheadline2: 'early families already using Avo',
+      rating: '5.0/5.0',
+      users: '15 Users',
       appStore: {
         label: 'Download on the',
         store: 'App Store',
@@ -172,6 +172,7 @@ export const translations = {
         about: 'About Us',
         privacy: 'Privacy Policy',
         terms: 'Terms of Service',
+        impressum: 'Impressum',
       },
       copyright: 'Avo. All rights reserved.',
       builtWith: 'Built with',
@@ -446,7 +447,7 @@ export const translations = {
         {
           title: 'Familie? Alle dabei.',
           description: 'Deine Liste, für alle. Mama, Papa, Kinder — alle sehen in Echtzeit, was auf der Liste steht. Kein doppelter Kauf, kein "Hast du...?"',
-          stat: { value: '50.000+', label: 'Familien nutzen Avo' },
+          stat: { value: '15', label: 'Familien nutzen Avo' },
           features: ['Echtzeit für alle Geräte', 'Sofort teilen', 'Live-Updates'],
         },
         {
@@ -464,10 +465,10 @@ export const translations = {
       headline: 'Nie wieder',
       headline2: 'vergessen.',
       subheadline: 'Schon',
-      subheadlineHighlight: '50.000+',
-      subheadline2: 'Familien kaufen smarter ein — mit Avo.',
-      rating: '4,8/5,0',
-      users: '50K+ Nutzer',
+      subheadlineHighlight: '15',
+      subheadline2: 'erste Familien kaufen smarter ein — mit Avo.',
+      rating: '5,0/5,0',
+      users: '15 Nutzer',
       appStore: {
         label: 'Laden im',
         store: 'App Store',
@@ -492,6 +493,7 @@ export const translations = {
         about: 'Über uns',
         privacy: 'Datenschutz',
         terms: 'Nutzungsbedingungen',
+        impressum: 'Impressum',
       },
       copyright: 'Avo. Alle Rechte vorbehalten.',
       builtWith: 'Entwickelt mit',

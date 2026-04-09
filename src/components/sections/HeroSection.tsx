@@ -161,9 +161,9 @@ export default function HeroSection() {
               className="flex flex-wrap items-center justify-center lg:justify-start gap-x-10 gap-y-6"
             >
               {[
-                { value: '50K+', label: t.hero.stats.users },
+                { value: '15', label: t.hero.stats.users },
                 { value: '10K+', label: t.hero.stats.recipes },
-                { value: '4.8', label: t.hero.stats.rating },
+                { value: '5.0', label: t.hero.stats.rating },
               ].map((stat, index) => (
                 <div key={stat.label} className="flex items-center gap-8 md:gap-10">
                   <div className="text-center lg:text-left">
