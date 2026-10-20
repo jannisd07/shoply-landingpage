@@ -97,4 +97,4 @@ npm run build
 
 ## 📄 License
 
-MIT License
+CC0 1.0 Universal (public domain), see [LICENSE](LICENSE)
